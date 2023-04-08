@@ -6,7 +6,6 @@ authors = ["Francesc Rocher"]
 maintainers = ["Francesc Rocher <francesc.rocher@gmail.com>"]
 maintainers-logins = ["rocher"]
 
-executables = ["alice_project_euler_rocher"]
 [[depends-on]]
 euler_tools = "^1.1.1"
 [[depends-on]]
