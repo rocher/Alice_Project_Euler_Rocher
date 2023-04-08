@@ -6,12 +6,12 @@ authors = ["Francesc Rocher"]
 maintainers = ["Francesc Rocher <francesc.rocher@gmail.com>"]
 maintainers-logins = ["rocher"]
 
+[build-switches]
+"*".ada_version = ["-gnat2022", "-gnatX", "-gnatW8"]
+
 [[depends-on]]
 euler_tools = "^1.1.1"
 [[depends-on]]
 alice_project_euler = "~0.1.0-dev"
 [[pins]]
 alice_project_euler = { path='../..' }
-
-[build-switches]
-"*".ada_version = ["-gnat2022", "-gnatX", "-gnatW8"]
