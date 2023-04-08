@@ -43,13 +43,7 @@ project Alice_Project_Euler_Rocher is
    );
 
    package Compiler is
-      for Default_Switches ("Ada") use
-         Alice_Project_Euler_Rocher_Config.Ada_Compiler_Switches &
-         (
-              "-gnatW8"   --  Wide character encoding method
-            , "-gnat2022" --  Ada 2022 mode
-            , "-gnatX"    --  Language extensions permitted
-         );
+      for Default_Switches ("Ada") use Alice_Project_Euler_Rocher_Config.Ada_Compiler_Switches;
    end Compiler;
 
    package Binder is

@@ -13,3 +13,6 @@ euler_tools = "^1.1.1"
 alice_project_euler = "~0.1.0-dev"
 [[pins]]
 alice_project_euler = { path='../..' }
+
+[build-switches]
+"*".ada_version = ["-gnat2022", "-gnatX", "-gnatW8"]
