@@ -6,3 +6,7 @@ css
 html
 input
 js
+/obj/
+/bin/
+/alire/
+/config/
