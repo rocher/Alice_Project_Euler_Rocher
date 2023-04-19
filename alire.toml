@@ -1,6 +1,6 @@
 name = "alice_project_euler_rocher"
-description = "Shiny new project"
-version = "0.1.0-dev"
+version = "0.1.1-dev"
+description = "Problems for Alice / Project Euler"
 
 authors = ["Francesc Rocher"]
 maintainers = ["Francesc Rocher <francesc.rocher@gmail.com>"]
@@ -11,7 +11,6 @@ maintainers-logins = ["rocher"]
 
 [[depends-on]]
 euler_tools = "^1.1.1"
-[[depends-on]]
-alice_project_euler = "~0.1.0-dev"
+project_euler = "~0.1.0-dev"
 [[pins]]
-alice_project_euler = { path='../..' }
+project_euler = { path='../..' }
