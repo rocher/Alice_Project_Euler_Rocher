@@ -120,7 +120,7 @@ package body P0002_Even_Fibonacci_Numbers is
          for Y in -18 .. 17 loop
             Plotter.Rectangle
               (X0 => Float (X), Y0 => Float (Y), X1 => Float (X) + 1.0,
-               Y1 => Float (Y) + 1.0, color => "#333");
+               Y1 => Float (Y) + 1.0);
             delay (0.015);
             Problem.Wait_To_Continue;
             if Problem.Is_Stopped then

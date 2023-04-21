@@ -149,11 +149,18 @@ package body P0014_Longest_Collatz_Sequence is
       --  block computations
       Σ_Length    : Float;
       Has_Max     : Boolean;
-      Block_Size  : constant Integer_Type := 10_000;
+      Block_Size  : Integer_Type := 10_000;
       Block_Max_X : Integer_Type;
-      Block_Max_Y : Integer_Type          := 0;
+      Block_Max_Y : Integer_Type := 0;
       Block_Min_X : Integer_Type;
-      Block_Min_Y : Integer_Type          := Integer_Type'Last;
+      Block_Min_Y : Integer_Type := Integer_Type'Last;
+
+      Color_Rectangle      : constant String := "#999";
+      Color_Fill_Rectangle : constant String := "#eee";
+      Color_Last_Rectangle : constant String := "#396";
+      Color_Abs_Max        : constant String := "#c00";
+      Color_Block_Max      : constant String := "#33c";
+      Color_Block_Min      : constant String := "#c3c";
 
       Has_Paused : Boolean := False;
    begin
@@ -163,6 +170,7 @@ package body P0014_Longest_Collatz_Sequence is
 
       Problem.Start;
       Plotter.Start;
+      Plotter.Fill_Color (Color_Fill_Rectangle);
 
       Start      := 999_999;
       Number     := 0;
@@ -202,23 +210,32 @@ package body P0014_Longest_Collatz_Sequence is
          end if;
 
          if Start mod Block_Size = 0 or else Start = 1 then
+            Plotter.Fill_Rectangle
+              (Float (Start), 0.0, Float (Start) + Float (Block_Size),
+               Σ_Length / Float (Block_Size));
+            Plotter.Stroke_color (Color_Rectangle);
             Plotter.Rectangle
               (Float (Start), 0.0, Float (Start) + Float (Block_Size),
-               Σ_Length / Float (Block_Size), "#999");
+               Σ_Length / Float (Block_Size));
             if Has_Max then
+               Plotter.Stroke_color (Color_Abs_Max);
                Plotter.Line
-                 (Float (Answer), 0.0, Float (Answer), Float (Max_Length),
-                  "#c00");
+                 (Float (Answer), 0.0, Float (Answer), Float (Max_Length));
+               Plotter.Line_Dash (10, 5);
                Plotter.Line
-                 (0.0, Float (Max_Length), 1_000_000.0, Float (Max_Length),
-                  "#f88");
+                 (0.0, Float (Max_Length), 1_000_000.0, Float (Max_Length));
+               Plotter.Line_Dash (10, 0);
             else
+               Plotter.Stroke_color (Color_Block_Max);
                Plotter.Line
                  (Float (Block_Max_X), 0.0, Float (Block_Max_X),
-                  Float (Block_Max_Y), "#33c");
+                  Float (Block_Max_Y));
+               Plotter.Stroke_color (Color_Block_Min);
+               Plotter.Line_Width (3);
                Plotter.Line
                  (Float (Block_Min_X), 0.0, Float (Block_Min_X),
-                  Float (Block_Min_Y), "#000");
+                  Float (Block_Min_Y));
+               Plotter.Line_Width (1);
             end if;
             Σ_Length    := 0.0;
             Has_Max     := False;
@@ -227,12 +244,31 @@ package body P0014_Longest_Collatz_Sequence is
 
             if Start <= 100_000 and then not Has_Paused then
                Problem.Pause;
+
+               Plotter.Set_Layer_Info;
+               Plotter.Stroke_color ("#000");
+               Plotter.Fill_Color ("#000");
+               Plotter.Line_Width (1);
+               Plotter.Line (75_000.0, 465.0, 50_000.0, 405.0);
+               Plotter.Font ("sans-serif", "22px");
+               Plotter.Text (50_000.0, 470.0, "Intuition:");
+               Plotter.Font ("sans-serif", "18px");
+               Plotter.Text
+                 (105_000.0, 470.0, "previous interval scaled 1/10");
+               Plotter.Line_Width (4);
+               Plotter.Line_Dash (5, 3);
+               Plotter.Stroke_color (Color_Last_Rectangle);
+               Plotter.Rectangle (-10.0, 401.0, 99_999.0, -1.0);
+               Plotter.Line_Dash (10, 0);
+               Plotter.Set_Layer_Normal;
+
                Plotter.Pause;
+               Block_Size := 5_000;
                Has_Paused := True;
             end if;
 
-            delay (0.001);
             Problem.Wait_To_Continue;
+
             if Problem.Is_Stopped then
                return;
             end if;
@@ -242,6 +278,9 @@ package body P0014_Longest_Collatz_Sequence is
          Start := Start - 1;
 
       end loop;
+
+      Plotter.Set_Layer_Info;
+      Plotter.Clear_Plot;
 
       Problem.Stop;
       Plotter.Stop;

@@ -92,14 +92,15 @@ package body P0007_10001st_Prime is
             when others =>
                Color := "#666";
          end case;
-         Plotter.Rectangle (X - 0.5, Y - 0.5, X + 0.5, Y + 0.5, Color);
+         Plotter.Stroke_color (Color);
+         Plotter.Rectangle (X - 0.5, Y - 0.5, X + 0.5, Y + 0.5);
 
          exit when Count = 10_001;
 
          Prime := Prime_Next (Cursor);
          Count := @ + 1;
 
-         delay (0.001);
+         delay (0.000_1);
          P.Wait_To_Continue;
          if P.Is_Stopped then
             return;
