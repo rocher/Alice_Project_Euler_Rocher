@@ -254,7 +254,7 @@ package body P0014_Longest_Collatz_Sequence is
                Plotter.Text (50_000.0, 470.0, "Intuition:");
                Plotter.Font ("sans-serif", "18px");
                Plotter.Text
-                 (105_000.0, 470.0, "previous interval scaled 1/10");
+                 (105_000.0, 470.0, "same as previous interval, scaled 1/10");
                Plotter.Line_Width (4);
                Plotter.Line_Dash (5, 3);
                Plotter.Stroke_color (Color_Last_Rectangle);
