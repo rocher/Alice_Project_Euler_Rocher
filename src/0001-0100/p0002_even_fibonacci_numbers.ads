@@ -23,13 +23,14 @@
 --
 -------------------------------------------------------------------------------
 
-with Ada.Strings.Unbounded;     use Ada.Strings.Unbounded;
-with Project_Euler.GUI;         use Project_Euler.GUI;
-with Project_Euler.GUI_Plotter; use Project_Euler.GUI_Plotter;
+with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
+
+with Project_Euler.GUI.Problem; use Project_Euler.GUI.Problem;
+with Project_Euler.GUI.Plotter; use Project_Euler.GUI.Plotter;
 
 package P0002_Even_Fibonacci_Numbers is
 
-   type Problem_Type is new GUI_Type with null record;
+   type Problem_Type is new GUI_Problem_Type with null record;
 
    overriding function Number (Problem : Problem_Type) return Natural is (2);
 

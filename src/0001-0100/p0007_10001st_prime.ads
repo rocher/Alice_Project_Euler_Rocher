@@ -21,12 +21,12 @@
 -------------------------------------------------------------------------------
 
 with Ada.Strings.Unbounded;     use Ada.Strings.Unbounded;
-with Project_Euler.GUI;         use Project_Euler.GUI;
-with Project_Euler.GUI_Plotter; use Project_Euler.GUI_Plotter;
+with Project_Euler.GUI.Problem; use Project_Euler.GUI.Problem;
+with Project_Euler.GUI.Plotter; use Project_Euler.GUI.Plotter;
 
 package P0007_10001st_Prime is
 
-   type Problem_Type is new GUI_Type with null record;
+   type Problem_Type is new GUI_Problem_Type with null record;
 
    overriding function Number (Problem : Problem_Type) return Natural is (7);
 

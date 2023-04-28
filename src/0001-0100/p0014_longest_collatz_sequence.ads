@@ -36,15 +36,15 @@
 -------------------------------------------------------------------------------
 
 with Ada.Strings.Unbounded;     use Ada.Strings.Unbounded;
-with Project_Euler.GUI;         use Project_Euler.GUI;
-with Project_Euler.GUI_Plotter; use Project_Euler.GUI_Plotter;
+with Project_Euler.GUI.Problem; use Project_Euler.GUI.Problem;
+with Project_Euler.GUI.Plotter; use Project_Euler.GUI.Plotter;
 
 with Euler_Tools_Int1; use Euler_Tools_Int1;
 with Parse_Args;       use Parse_Args;
 
 package P0014_Longest_Collatz_Sequence is
 
-   type Problem_Type is new GUI_Type with private;
+   type Problem_Type is new GUI_Problem_Type with private;
 
    overriding function Number (Problem : Problem_Type) return Natural is (14);
 
@@ -73,7 +73,7 @@ package P0014_Longest_Collatz_Sequence is
 
 private
 
-   type Problem_Type is new GUI_Type with record
+   type Problem_Type is new GUI_Problem_Type with record
       Max_Length : Integer_Type := 0;
       Max_Count  : Natural      := 0;
 

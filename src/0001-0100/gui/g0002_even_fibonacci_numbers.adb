@@ -8,11 +8,14 @@
 
 with P0002_Even_Fibonacci_Numbers;
 
-with Project_Euler.GUI_Runner_Gnoga; use Project_Euler.GUI_Runner_Gnoga;
-with Project_Euler.GUI_Factory;      use Project_Euler.GUI_Factory;
+with Project_Euler.GUI.Runner.Gnoga_Impl;
+with Project_Euler.GUI.Factory;
+
+use Project_Euler.GUI.Runner.Gnoga_Impl;
+use Project_Euler.GUI.Factory;
 
 procedure G0002_Even_Fibonacci_Numbers is
-   Runner : Project_Euler.GUI_Runner_Gnoga.Gnoga_Runner_Type;
+   Runner : Project_Euler.GUI.Runner.Gnoga_Impl.Gnoga_Runner_Type;
 
    function P0002_Factory is new Problem_Factory
      (P0002_Even_Fibonacci_Numbers.Problem_Type);
