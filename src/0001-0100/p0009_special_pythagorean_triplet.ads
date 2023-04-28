@@ -25,12 +25,12 @@
 --
 -------------------------------------------------------------------------------
 
-with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
-with Project_Euler.CLI;     use Project_Euler.CLI;
+with Ada.Strings.Unbounded;     use Ada.Strings.Unbounded;
+with Project_Euler.CLI.Problem; use Project_Euler.CLI.Problem;
 
 package P0009_Special_Pythagorean_Triplet is
 
-   type Problem_Type is new CLI_Type with null record;
+   type Problem_Type is new CLI_Problem_Type with null record;
 
    overriding function Number (Problem : Problem_Type) return Natural is (9);
 
