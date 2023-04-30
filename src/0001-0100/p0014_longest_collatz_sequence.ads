@@ -36,48 +36,43 @@
 -------------------------------------------------------------------------------
 
 with Ada.Strings.Unbounded;     use Ada.Strings.Unbounded;
-with Project_Euler.GUI.Problem; use Project_Euler.GUI.Problem;
-with Project_Euler.GUI.Plotter; use Project_Euler.GUI.Plotter;
-
-with Euler_Tools_Int1; use Euler_Tools_Int1;
-with Parse_Args;       use Parse_Args;
+with Euler_Tools_Int1;          use Euler_Tools_Int1;
+with Parse_Args;                use Parse_Args;
+with Project_Euler.CLI.Problem; use Project_Euler.CLI.Problem;
 
 package P0014_Longest_Collatz_Sequence is
 
-   type Problem_Type is new GUI_Problem_Type with private;
+   type Problem_Type is new CLI_Problem_Type with private;
+
+   Title_Text : constant String := "Longest Collatz sequence";
+   Brief_Text : constant String :=
+     "Which starting number, under one million, produces the longest " &
+     "[Collatz] chain?";
 
    overriding function Number (Problem : Problem_Type) return Natural is (14);
 
    overriding function Title (Problem : Problem_Type) return String is
-     ("Longest Collatz sequence");
+     (Title_Text);
 
    overriding function Brief (Problem : Problem_Type) return String is
-     ("Which starting number, under one million, produces the longest " &
-      "[Collatz] chain?");
+     (Brief_Text);
 
-   overriding procedure Initialize
+   overriding procedure Configure_Options
      (Problem : Problem_Type; Parser : in out Parse_Args.Argument_Parser);
 
-   overriding procedure Set_Options
+   overriding procedure Parse_Options
      (Problem : in out Problem_Type; Parser : Parse_Args.Argument_Parser);
 
    overriding function Answer
      (Problem : in out Problem_Type; Notes : in out Unbounded_String)
       return String;
 
-   overriding procedure Plotter_Setup
-     (Problem : Problem_Type; Plotter : Pointer_To_Plotter_Class);
-
-   overriding procedure On_Start
-     (Problem : in out Problem_Type; Plotter : Pointer_To_Plotter_Class);
-
 private
 
-   type Problem_Type is new GUI_Problem_Type with record
-      Max_Length : Integer_Type := 0;
-      Max_Count  : Natural      := 0;
-
-      Option_Reverse : Boolean := False;
+   type Problem_Type is new CLI_Problem_Type with record
+      Max_Length     : Integer_Type := 0;
+      Max_Count      : Natural      := 0;
+      Option_Reverse : Boolean      := False;
    end record;
 
 end P0014_Longest_Collatz_Sequence;

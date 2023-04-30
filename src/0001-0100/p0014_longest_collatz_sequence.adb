@@ -39,11 +39,11 @@ with Simple_Logging; use Simple_Logging;
 
 package body P0014_Longest_Collatz_Sequence is
 
-   ----------------
-   -- Initialize --
-   ----------------
+   -----------------------
+   -- Configure_Options --
+   -----------------------
 
-   overriding procedure Initialize
+   overriding procedure Configure_Options
      (Problem : Problem_Type; Parser : in out Parse_Args.Argument_Parser)
    is
    begin
@@ -51,19 +51,19 @@ package body P0014_Longest_Collatz_Sequence is
         (Make_Boolean_Option (False), Name => "REVERSE", Short_Option => 'r',
          Long_Option                       => "reverse",
          Usage => "Traverse search space in reverse order");
-   end Initialize;
+   end Configure_Options;
 
-   -----------------
-   -- Set_Options --
-   -----------------
+   -------------------
+   -- Parse_Options --
+   -------------------
 
-   overriding procedure Set_Options
+   overriding procedure Parse_Options
      (Problem : in out Problem_Type; Parser : Parse_Args.Argument_Parser)
    is
    begin
       Problem.Option_Reverse := Parser.Boolean_Value ("REVERSE");
       Simple_Logging.Debug ("Reverse = " & Problem.Option_Reverse'Image);
-   end Set_Options;
+   end Parse_Options;
 
    ------------
    -- Answer --
@@ -116,174 +116,5 @@ package body P0014_Longest_Collatz_Sequence is
 
       return To_String (Answer);
    end Answer;
-
-   -------------------
-   -- Plotter_Setup --
-   -------------------
-
-   overriding procedure Plotter_Setup
-     (Problem : Problem_Type; Plotter : Pointer_To_Plotter_Class)
-   is
-   begin
-      Plotter.Set_Axes
-        (X_Min => 0.0, X_Max => 1_000_000.0, Y_Min => 0.0, Y_Max => 600.0);
-      Plotter.Draw_Grid
-        (X_Major => 100_000.0, X_Minor => 50_000.0, Y_Major => 100.0,
-         Y_Minor => 50.0);
-      Plotter.Draw_Axes ("Number", "Length");
-   end Plotter_Setup;
-
-   --------------
-   -- On_Start --
-   --------------
-
-   overriding procedure On_Start
-     (Problem : in out Problem_Type; Plotter : Pointer_To_Plotter_Class)
-   is
-      Start      : Integer_Type;
-      Number     : Integer_Type;
-      Length     : Integer_Type;
-      Answer     : Integer_Type;
-      Max_Length : Integer_Type := 0;
-
-      --  block computations
-      Σ_Length    : Float;
-      Has_Max     : Boolean;
-      Block_Size  : Integer_Type := 10_000;
-      Block_Max_X : Integer_Type;
-      Block_Max_Y : Integer_Type := 0;
-      Block_Min_X : Integer_Type;
-      Block_Min_Y : Integer_Type := Integer_Type'Last;
-
-      Color_Rectangle      : constant String := "#999";
-      Color_Fill_Rectangle : constant String := "#eee";
-      Color_Last_Rectangle : constant String := "#396";
-      Color_Abs_Max        : constant String := "#c00";
-      Color_Block_Max      : constant String := "#33c";
-      Color_Block_Min      : constant String := "#c3c";
-
-      Has_Paused : Boolean := False;
-   begin
-      if Problem.Is_Started then
-         return;
-      end if;
-
-      Problem.Start;
-      Plotter.Start;
-      Plotter.Fill_Color (Color_Fill_Rectangle);
-
-      Start      := 999_999;
-      Number     := 0;
-      Length     := 0;
-      Answer     := 0;
-      Max_Length := 0;
-
-      Σ_Length := 0.0;
-      Has_Max  := False;
-
-      loop
-         Number := Collatz_Next (Start);
-         Length := 1;
-
-         loop
-            Number := Collatz_Next (Number);
-            Length := @ + 1;
-            exit when Number = 1;
-         end loop;
-
-         Σ_Length := @ + Float (Length);
-
-         if Length > Max_Length then
-            Answer     := Start;
-            Max_Length := Length;
-            Has_Max    := True;
-         end if;
-
-         if Length > Block_Max_Y then
-            Block_Max_X := Start;
-            Block_Max_Y := Length;
-         end if;
-
-         if Length < Block_Min_Y then
-            Block_Min_X := Start;
-            Block_Min_Y := Length;
-         end if;
-
-         if Start mod Block_Size = 0 or else Start = 1 then
-            Plotter.Fill_Rectangle
-              (Float (Start), 0.0, Float (Start) + Float (Block_Size),
-               Σ_Length / Float (Block_Size));
-            Plotter.Stroke_color (Color_Rectangle);
-            Plotter.Rectangle
-              (Float (Start), 0.0, Float (Start) + Float (Block_Size),
-               Σ_Length / Float (Block_Size));
-            if Has_Max then
-               Plotter.Stroke_color (Color_Abs_Max);
-               Plotter.Line
-                 (Float (Answer), 0.0, Float (Answer), Float (Max_Length));
-               Plotter.Line_Dash (10, 5);
-               Plotter.Line
-                 (0.0, Float (Max_Length), 1_000_000.0, Float (Max_Length));
-               Plotter.Line_Dash (10, 0);
-            else
-               Plotter.Stroke_color (Color_Block_Max);
-               Plotter.Line
-                 (Float (Block_Max_X), 0.0, Float (Block_Max_X),
-                  Float (Block_Max_Y));
-               Plotter.Stroke_color (Color_Block_Min);
-               Plotter.Line_Width (3);
-               Plotter.Line
-                 (Float (Block_Min_X), 0.0, Float (Block_Min_X),
-                  Float (Block_Min_Y));
-               Plotter.Line_Width (1);
-            end if;
-            Σ_Length    := 0.0;
-            Has_Max     := False;
-            Block_Max_Y := 0;
-            Block_Min_Y := Integer_Type'Last;
-
-            if Start <= 100_000 and then not Has_Paused then
-               Problem.Pause;
-
-               Plotter.Set_Layer_Info;
-               Plotter.Stroke_color ("#000");
-               Plotter.Fill_Color ("#000");
-               Plotter.Line_Width (1);
-               Plotter.Line (75_000.0, 465.0, 50_000.0, 405.0);
-               Plotter.Font ("sans-serif", "22px");
-               Plotter.Text (50_000.0, 470.0, "Intuition:");
-               Plotter.Font ("sans-serif", "18px");
-               Plotter.Text
-                 (105_000.0, 470.0, "same as previous interval, scaled 1/10");
-               Plotter.Line_Width (4);
-               Plotter.Line_Dash (5, 3);
-               Plotter.Stroke_color (Color_Last_Rectangle);
-               Plotter.Rectangle (-10.0, 401.0, 99_999.0, -1.0);
-               Plotter.Line_Dash (10, 0);
-               Plotter.Set_Layer_Normal;
-
-               Plotter.Pause;
-               Block_Size := 5_000;
-               Has_Paused := True;
-            end if;
-
-            Problem.Wait_To_Continue;
-
-            if Problem.Is_Stopped then
-               return;
-            end if;
-         end if;
-
-         exit when Start = 1;  --  ! Intuition: Start >= 99_999
-         Start := Start - 1;
-
-      end loop;
-
-      Plotter.Set_Layer_Info;
-      Plotter.Clear_Plot;
-
-      Problem.Stop;
-      Plotter.Stop;
-   end On_Start;
 
 end P0014_Longest_Collatz_Sequence;
