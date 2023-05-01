@@ -88,9 +88,9 @@ package body P0014_Longest_Collatz_Sequence.GUI is
       Plotter.Draw_Axes ("Number", "Length");
    end Plotter_Setup;
 
-   --------------
-   -- On_Start --
-   --------------
+   ------------------
+   -- Problem_Task --
+   ------------------
 
    task body Problem_Task is
       Plotter : Pointer_To_Plotter_Class;
@@ -206,10 +206,32 @@ package body P0014_Longest_Collatz_Sequence.GUI is
                      Float (Block_Min_Y));
                   Plotter.Line_Width (1);
                end if;
-               Σ_Length    := 0.0;
-               Has_Max     := False;
-               Block_Max_Y := 0;
-               Block_Min_Y := Integer_Type'Last;
+
+               if Seed = 790_000 then
+                  Plotter.Set_Layer_Info;
+                  Plotter.Stroke_color ("#000");
+                  Plotter.Fill_Color ("#000");
+                  Plotter.Font ("sans-serif", "22px");
+                  Plotter.Text_Align ("left");
+                  Plotter.Text
+                    (400_000.0, 555.0,
+                     "Blocks of 10.000 numbers: min, average and max " &
+                     "lengths of Collatz sequences");
+                  Plotter.Line_Width (1);
+                  Plotter.Line
+                    (575_000.0, 550.0, Float (Block_Min_X - 1),
+                     Float (Block_Min_Y + 1));
+                  Plotter.Line
+                    (625_000.0, 550.0, Float (Seed),
+                     Σ_Length / Float (Block_Size));
+                  Plotter.Line
+                    (685_000.0, 550.0, Float (Block_Max_X - 1),
+                     Float (Block_Max_Y + 1));
+                  Plotter.Pause;
+                  accept Continue;
+                  Plotter.Clear_Plot;
+                  Plotter.Set_Layer_Normal;
+               end if;
 
                if Seed <= 100_000 and then not Has_Paused then
                   Plotter.Set_Layer_Info;
@@ -218,17 +240,14 @@ package body P0014_Longest_Collatz_Sequence.GUI is
                   Plotter.Line_Width (1);
                   Plotter.Line (75_000.0, 465.0, 50_000.0, 405.0);
                   Plotter.Font ("sans-serif", "22px");
-                  Plotter.Text (50_000.0, 470.0, "Intuition:");
-                  Plotter.Font ("sans-serif", "18px");
                   Plotter.Text
-                    (105_000.0, 470.0,
-                     "same as previous interval, scaled 1/10");
+                    (50_000.0, 470.0,
+                     "Intuition:" & "same as previous interval, scaled 1/10");
                   Plotter.Line_Width (4);
                   Plotter.Line_Dash (5, 3);
                   Plotter.Stroke_color (Color_Last_Rectangle);
                   Plotter.Rectangle (-10.0, 401.0, 99_999.0, -1.0);
                   Plotter.Line_Dash (10, 0);
-                  Plotter.Set_Layer_Normal;
 
                   Plotter.Pause;
                   Block_Size := 5_000;
@@ -236,7 +255,6 @@ package body P0014_Longest_Collatz_Sequence.GUI is
 
                   select
                      accept Continue;
-                     Plotter.Set_Layer_Info;
                      Plotter.Clear_Plot;
                      Plotter.Set_Layer_Normal;
                   or
@@ -244,15 +262,28 @@ package body P0014_Longest_Collatz_Sequence.GUI is
                      exit Problem_Loop;
                   end select;
                end if;
+
+               Σ_Length    := 0.0;
+               Has_Max     := False;
+               Block_Max_Y := 0;
+               Block_Min_Y := Integer_Type'Last;
+
+               select
+                  accept Stop;
+                  exit Problem_Loop;
+               or
+                  delay 0.002;
+               end select;
             end if;
 
-            exit when Seed = 1;  --  ! Intuition: Seed >= 99_999
+            exit Problem_Loop when Seed = 1;  --  ! Intuition: Seed >= 99_999
             Seed := Seed - 1;
 
          end loop Problem_Loop;
 
          Log.Info ("PLOTTER STOP");
          Plotter.Stop;
+         Plotter.Answer (To_String (Answer));
 
       end loop Infinite_Loop;
    end Problem_Task;
