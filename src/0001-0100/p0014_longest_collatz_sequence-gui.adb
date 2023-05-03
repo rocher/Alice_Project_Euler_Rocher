@@ -41,12 +41,16 @@ package body P0014_Longest_Collatz_Sequence.GUI is
 
    package Log renames Simple_Logging;
 
-   function Factory return Pointer_To_GUI_Problem_Class is
+   -------------------
+   -- P0014_Factory --
+   -------------------
+
+   function P0014_Factory return Pointer_To_GUI_Problem_Class is
       Problem : constant Pointer_To_GUI_Problem_Class := new Problem_Task;
    begin
       Log.Info ("New Problem_Task created");
       return Problem;
-   end Factory;
+   end P0014_Factory;
 
    -----------------------
    -- Configure_Options --
@@ -121,7 +125,6 @@ package body P0014_Longest_Collatz_Sequence.GUI is
    begin
 
       accept Initialize (P : not null Pointer_To_Plotter_Class) do
-         Log.Info ("INITIALIZE ACCEPTED");
          Plotter := P;
       end Initialize;
 
@@ -130,9 +133,7 @@ package body P0014_Longest_Collatz_Sequence.GUI is
       Infinite_Loop :
       loop
 
-         Log.Info ("START WAITING TO BE ACCEPTED");
          accept Start;
-         Log.Info ("START ACCEPTED");
 
          Plotter.Start;
          Plotter.Fill_Color (Color_Fill_Rectangle);
@@ -281,7 +282,6 @@ package body P0014_Longest_Collatz_Sequence.GUI is
 
          end loop Problem_Loop;
 
-         Log.Info ("PLOTTER STOP");
          Plotter.Stop;
          Plotter.Answer (To_String (Answer));
 

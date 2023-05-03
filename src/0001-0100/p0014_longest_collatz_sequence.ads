@@ -44,12 +44,14 @@ package P0014_Longest_Collatz_Sequence is
 
    type Problem_Type is new CLI_Problem_Type with private;
 
-   Title_Text : constant String := "Longest Collatz sequence";
-   Brief_Text : constant String :=
+   Problem_Number : constant Natural := 14;
+   Title_Text     : constant String  := "Longest Collatz sequence";
+   Brief_Text     : constant String  :=
      "Which starting number, under one million, produces the longest " &
      "[Collatz] chain?";
 
-   overriding function Number (Problem : Problem_Type) return Natural is (14);
+   overriding function Number (Problem : Problem_Type) return Natural is
+     (Problem_Number);
 
    overriding function Title (Problem : Problem_Type) return String is
      (Title_Text);

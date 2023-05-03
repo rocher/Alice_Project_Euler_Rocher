@@ -15,10 +15,9 @@ use P0014_Longest_Collatz_Sequence.GUI;
 procedure G0014_Longest_Collatz_Sequence is
 
    Runner : Gnoga_Runner_Type;
-   --  function P0014_Factory is new Problem_Factory (Problem_Type);
 
 begin
 
-   Runner.Run (Factory'Unrestricted_Access);
+   Runner.Run (P0014_Factory'Unrestricted_Access);
 
 end G0014_Longest_Collatz_Sequence;

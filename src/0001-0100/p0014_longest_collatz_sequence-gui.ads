@@ -54,7 +54,7 @@ package P0014_Longest_Collatz_Sequence.GUI is
       overriding entry Stop;
    end Problem_Task;
 
-   function Factory return Pointer_To_GUI_Problem_Class;
+   function P0014_Factory return Pointer_To_GUI_Problem_Class;
 
    overriding function Number (Problem : Problem_Task) return Natural is (14);
 
