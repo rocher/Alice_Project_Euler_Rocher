@@ -21,29 +21,27 @@
 -------------------------------------------------------------------------------
 
 with Ada.Strings.Unbounded;     use Ada.Strings.Unbounded;
-with Project_Euler.GUI.Problem; use Project_Euler.GUI.Problem;
-with Project_Euler.GUI.Plotter; use Project_Euler.GUI.Plotter;
+with Project_Euler.CLI.Problem; use Project_Euler.CLI.Problem;
 
 package P0007_10001st_Prime is
 
-   type Problem_Type is new GUI_Problem_Type with null record;
+   type Problem_Type is new CLI_Problem_Type with null record;
 
-   overriding function Number (Problem : Problem_Type) return Natural is (7);
+   Problem_Number : constant Natural := 7;
+   Title_Text     : constant String  := "10001st prime";
+   Brief_Text     : constant String  := "What is the 10001st prime number?";
+
+   overriding function Number (Problem : Problem_Type) return Natural is
+     (Problem_Number);
 
    overriding function Title (Problem : Problem_Type) return String is
-     ("10001st prime");
+     (Title_Text);
 
    overriding function Brief (Problem : Problem_Type) return String is
-     ("What is the 10001st prime number?");
+     (Brief_Text);
 
    overriding function Answer
      (Problem : in out Problem_Type; Notes : in out Unbounded_String)
       return String;
-
-   overriding procedure Plotter_Setup
-     (Problem : Problem_Type; Plotter : Pointer_To_Plotter_Class);
-
-   overriding procedure On_Start
-     (P : in out Problem_Type; Plotter : Pointer_To_Plotter_Class);
 
 end P0007_10001st_Prime;

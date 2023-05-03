@@ -7,8 +7,8 @@ project Alice_Project_Euler_Rocher is
    for Exec_Dir use "bin";
    for Main use (
       --  "g0002_even_fibonacci_numbers.adb"
-      -- ,"g0007_10001st_prime.adb"
-      "g0014_longest_collatz_sequence.adb"
+       "g0007_10001st_prime.adb"
+      ,"g0014_longest_collatz_sequence.adb"
 
       ,"c0001_multiples_of_3_or_5"
       -- ,"c0002_even_fibonacci_numbers.adb"
@@ -16,7 +16,7 @@ project Alice_Project_Euler_Rocher is
       ,"c0004_largest_palindrome_product.adb"
       ,"c0005_smallest_multiple.adb"
       ,"c0006_sum_square_difference.adb"
-      -- ,"c0007_10001st_prime.adb"
+      ,"c0007_10001st_prime.adb"
       ,"c0008_largest_product_in_a_series.adb"
       ,"c0009_special_pythagorean_triplet.adb"
       ,"c0010_summation_of_primes.adb"

@@ -7,17 +7,13 @@
 -------------------------------------------------------------------------------
 
 with Project_Euler.GUI.Runner.Gnoga_Impl;
-with Project_Euler.GUI.Factory;
-
 use Project_Euler.GUI.Runner.Gnoga_Impl;
-use Project_Euler.GUI.Factory;
 
-with P0007_10001st_Prime; use P0007_10001st_Prime;
+with P0007_10001st_Prime.GUI; use P0007_10001st_Prime.GUI;
 
 procedure G0007_10001st_Prime is
 
    Runner : Gnoga_Runner_Type;
-   function P0007_Factory is new Problem_Factory (Problem_Type);
 
 begin
 
