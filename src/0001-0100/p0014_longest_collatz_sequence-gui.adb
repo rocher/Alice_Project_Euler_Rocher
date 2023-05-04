@@ -229,9 +229,15 @@ package body P0014_Longest_Collatz_Sequence.GUI is
                     (685_000.0, 550.0, Float (Block_Max_X - 1),
                      Float (Block_Max_Y + 1));
                   Plotter.Pause;
-                  accept Continue;
-                  Plotter.Clear_Plot;
-                  Plotter.Set_Layer_Normal;
+
+                  select
+                     accept Continue;
+                     Plotter.Clear_Plot;
+                     Plotter.Set_Layer_Normal;
+                  or
+                     accept Stop;
+                     exit Problem_Loop;
+                  end select;
                end if;
 
                if Seed <= 100_000 and then not Has_Paused then
