@@ -122,7 +122,84 @@ package body P0014_Longest_Collatz_Sequence.GUI is
       Color_Block_Min      : constant String := "#c3c";
 
       Has_Paused : Boolean := False;
-   begin
+
+      procedure Draw_Block is
+      begin
+         Plotter.Fill_Rectangle
+           (Float (Seed), 0.0, Float (Seed) + Float (Block_Size),
+            Σ_Length / Float (Block_Size));
+         Plotter.Stroke_color (Color_Rectangle);
+         Plotter.Rectangle
+           (Float (Seed), 0.0, Float (Seed) + Float (Block_Size),
+            Σ_Length / Float (Block_Size));
+         if Has_Max then
+            Plotter.Stroke_color (Color_Abs_Max);
+            Plotter.Line
+              (Float (Answer), 0.0, Float (Answer), Float (Max_Length));
+            Plotter.Line_Dash (10, 5);
+            Plotter.Line
+              (0.0, Float (Max_Length), 1_000_000.0, Float (Max_Length));
+            Plotter.Line_Dash (10, 0);
+         else
+            Plotter.Stroke_color (Color_Block_Max);
+            Plotter.Line
+              (Float (Block_Max_X), 0.0, Float (Block_Max_X),
+               Float (Block_Max_Y));
+            Plotter.Stroke_color (Color_Block_Min);
+            Plotter.Line_Width (3);
+            Plotter.Line
+              (Float (Block_Min_X), 0.0, Float (Block_Min_X),
+               Float (Block_Min_Y));
+            Plotter.Line_Width (1);
+         end if;
+      end Draw_Block;
+
+      procedure Show_Info is
+      begin
+         Plotter.Set_Layer_Info;
+         Plotter.Stroke_color ("#000");
+         Plotter.Fill_Color ("#000");
+         Plotter.Font ("sans-serif", "22px");
+         Plotter.Text_Align ("left");
+         Plotter.Text
+           (400_000.0, 555.0,
+            "Blocks of 10.000 numbers: min, average and max " &
+            "lengths of Collatz sequences");
+         Plotter.Line_Width (1);
+         Plotter.Line
+           (575_000.0, 550.0, Float (Block_Min_X - 1),
+            Float (Block_Min_Y + 1));
+         Plotter.Line
+           (625_000.0, 550.0, Float (Seed), Σ_Length / Float (Block_Size));
+         Plotter.Line
+           (685_000.0, 550.0, Float (Block_Max_X - 1),
+            Float (Block_Max_Y + 1));
+         Plotter.Pause;
+      end Show_Info;
+
+      procedure Show_Intuition is
+      begin
+         Plotter.Set_Layer_Info;
+         Plotter.Stroke_color ("#000");
+         Plotter.Fill_Color ("#000");
+         Plotter.Line_Width (1);
+         Plotter.Line (75_000.0, 465.0, 50_000.0, 405.0);
+         Plotter.Font ("sans-serif", "22px");
+         Plotter.Text
+           (50_000.0, 470.0,
+            "Intuition:" & "same as previous interval, scaled 1/10");
+         Plotter.Line_Width (4);
+         Plotter.Line_Dash (5, 3);
+         Plotter.Stroke_color (Color_Last_Rectangle);
+         Plotter.Rectangle (-10.0, 401.0, 99_999.0, -1.0);
+         Plotter.Line_Dash (10, 0);
+
+         Plotter.Pause;
+         Block_Size := 5_000;
+         Has_Paused := True;
+      end Show_Intuition;
+
+   begin  -- Task
 
       accept Initialize (P : not null Pointer_To_Plotter_Class) do
          Plotter := P;
@@ -179,108 +256,43 @@ package body P0014_Longest_Collatz_Sequence.GUI is
                Block_Min_Y := Length;
             end if;
 
+            --  Block_Finished
             if Seed mod Block_Size = 0 or else Seed = 1 then
-               Plotter.Fill_Rectangle
-                 (Float (Seed), 0.0, Float (Seed) + Float (Block_Size),
-                  Σ_Length / Float (Block_Size));
-               Plotter.Stroke_color (Color_Rectangle);
-               Plotter.Rectangle
-                 (Float (Seed), 0.0, Float (Seed) + Float (Block_Size),
-                  Σ_Length / Float (Block_Size));
-               if Has_Max then
-                  Plotter.Stroke_color (Color_Abs_Max);
-                  Plotter.Line
-                    (Float (Answer), 0.0, Float (Answer), Float (Max_Length));
-                  Plotter.Line_Dash (10, 5);
-                  Plotter.Line
-                    (0.0, Float (Max_Length), 1_000_000.0, Float (Max_Length));
-                  Plotter.Line_Dash (10, 0);
-               else
-                  Plotter.Stroke_color (Color_Block_Max);
-                  Plotter.Line
-                    (Float (Block_Max_X), 0.0, Float (Block_Max_X),
-                     Float (Block_Max_Y));
-                  Plotter.Stroke_color (Color_Block_Min);
-                  Plotter.Line_Width (3);
-                  Plotter.Line
-                    (Float (Block_Min_X), 0.0, Float (Block_Min_X),
-                     Float (Block_Min_Y));
-                  Plotter.Line_Width (1);
-               end if;
+
+               Draw_Block;
 
                if Seed = 790_000 then
-                  Plotter.Set_Layer_Info;
-                  Plotter.Stroke_color ("#000");
-                  Plotter.Fill_Color ("#000");
-                  Plotter.Font ("sans-serif", "22px");
-                  Plotter.Text_Align ("left");
-                  Plotter.Text
-                    (400_000.0, 555.0,
-                     "Blocks of 10.000 numbers: min, average and max " &
-                     "lengths of Collatz sequences");
-                  Plotter.Line_Width (1);
-                  Plotter.Line
-                    (575_000.0, 550.0, Float (Block_Min_X - 1),
-                     Float (Block_Min_Y + 1));
-                  Plotter.Line
-                    (625_000.0, 550.0, Float (Seed),
-                     Σ_Length / Float (Block_Size));
-                  Plotter.Line
-                    (685_000.0, 550.0, Float (Block_Max_X - 1),
-                     Float (Block_Max_Y + 1));
-                  Plotter.Pause;
-
-                  select
-                     accept Continue;
-                     Plotter.Clear_Plot;
-                     Plotter.Set_Layer_Normal;
-                  or
-                     accept Stop;
-                     exit Problem_Loop;
-                  end select;
+                  Show_Info;
+                  goto Pause_And_Accept_Continue_Or_Stop;
+               elsif Seed = 100_000 then
+                  Show_Intuition;
+                  goto Pause_And_Accept_Continue_Or_Stop;
+               else
+                  goto Do_Not_Pause;
                end if;
 
-               if Seed <= 100_000 and then not Has_Paused then
-                  Plotter.Set_Layer_Info;
-                  Plotter.Stroke_color ("#000");
-                  Plotter.Fill_Color ("#000");
-                  Plotter.Line_Width (1);
-                  Plotter.Line (75_000.0, 465.0, 50_000.0, 405.0);
-                  Plotter.Font ("sans-serif", "22px");
-                  Plotter.Text
-                    (50_000.0, 470.0,
-                     "Intuition:" & "same as previous interval, scaled 1/10");
-                  Plotter.Line_Width (4);
-                  Plotter.Line_Dash (5, 3);
-                  Plotter.Stroke_color (Color_Last_Rectangle);
-                  Plotter.Rectangle (-10.0, 401.0, 99_999.0, -1.0);
-                  Plotter.Line_Dash (10, 0);
+               <<Pause_And_Accept_Continue_Or_Stop>>
+               select
+                  accept Continue;
+                  Plotter.Clear_Plot;
+                  Plotter.Set_Layer_Normal;
+               or
+                  accept Stop;
+                  exit Problem_Loop;
+               end select;
 
-                  Plotter.Pause;
-                  Block_Size := 5_000;
-                  Has_Paused := True;
-
-                  select
-                     accept Continue;
-                     Plotter.Clear_Plot;
-                     Plotter.Set_Layer_Normal;
-                  or
-                     accept Stop;
-                     exit Problem_Loop;
-                  end select;
-               end if;
-
-               Σ_Length    := 0.0;
-               Has_Max     := False;
-               Block_Max_Y := 0;
-               Block_Min_Y := Integer_Type'Last;
-
+               <<Do_Not_Pause>>
                select
                   accept Stop;
                   exit Problem_Loop;
                or
                   delay 0.002;
                end select;
+
+               Σ_Length    := 0.0;
+               Has_Max     := False;
+               Block_Max_Y := 0;
+               Block_Min_Y := Integer_Type'Last;
             end if;
 
             exit Problem_Loop when Seed = 1;  --  ! Intuition: Seed >= 99_999
