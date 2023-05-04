@@ -34,16 +34,22 @@ with Project_Euler.CLI.Problem; use Project_Euler.CLI.Problem;
 
 package P0006_Sum_Square_Difference is
 
+   Problem_Number : constant Natural := 6;
+   Title_Text     : constant String  := "Sum square difference";
+   Brief_Text     : constant String  :=
+     "Find the difference between the sum of the squares of the first one " &
+     "hundred natural numbers and the square of the sum.";
+
    type Problem_Type is new CLI_Problem_Type with null record;
 
-   overriding function Number (Problem : Problem_Type) return Natural is (6);
+   overriding function Number (Problem : Problem_Type) return Natural is
+     (Problem_Number);
 
    overriding function Title (Problem : Problem_Type) return String is
-     ("Sum square difference");
+     (Title_Text);
 
    overriding function Brief (Problem : Problem_Type) return String is
-     ("Find the difference between the sum of the squares of the first one " &
-      "hundred natural numbers and the square of the sum.");
+     (Brief_Text);
 
    overriding function Answer
      (Problem : in out Problem_Type; Notes : in out Unbounded_String)

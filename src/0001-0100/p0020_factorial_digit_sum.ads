@@ -27,15 +27,21 @@ with Project_Euler.CLI.Problem; use Project_Euler.CLI.Problem;
 
 package P0020_Factorial_Digit_Sum is
 
+   Problem_Number : constant Natural := 20;
+   Title_Text     : constant String  := "Factorial digit sum";
+   Brief_Text     : constant String  :=
+     "Find the sum of the digits in the number 100!";
+
    type Problem_Type is new CLI_Problem_Type with null record;
 
-   overriding function Number (Problem : Problem_Type) return Natural is (20);
+   overriding function Number (Problem : Problem_Type) return Natural is
+     (Problem_Number);
 
    overriding function Title (Problem : Problem_Type) return String is
-     ("Factorial digit sum");
+     (Title_Text);
 
    overriding function Brief (Problem : Problem_Type) return String is
-     ("Find the sum of the digits in the number 100!");
+     (Brief_Text);
 
    overriding function Answer
      (Problem : in out Problem_Type; Notes : in out Unbounded_String)

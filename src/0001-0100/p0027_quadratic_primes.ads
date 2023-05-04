@@ -43,17 +43,23 @@ with Project_Euler.CLI.Problem; use Project_Euler.CLI.Problem;
 
 package P0027_Quadratic_Primes is
 
+   Problem_Number : constant Natural := 27;
+   Title_Text     : constant String  := "Quadratic primes";
+   Brief_Text     : constant String  :=
+     "Find the product of the coefficients, a and b, for the quadratic " &
+     "expression that produces the maximum number of primes for " &
+     "consecutive values of n, starting with n=0.";
+
    type Problem_Type is new CLI_Problem_Type with null record;
 
-   overriding function Number (Problem : Problem_Type) return Natural is (27);
+   overriding function Number (Problem : Problem_Type) return Natural is
+     (Problem_Number);
 
    overriding function Title (Problem : Problem_Type) return String is
-     ("Quadratic primes");
+     (Title_Text);
 
    overriding function Brief (Problem : Problem_Type) return String is
-     ("Find the product of the coefficients, a and b, for the quadratic " &
-      "expression that produces the maximum number of primes for " &
-      "consecutive values of n, starting with n=0.");
+     (Brief_Text);
 
    overriding function Answer
      (Problem : in out Problem_Type; Notes : in out Unbounded_String)

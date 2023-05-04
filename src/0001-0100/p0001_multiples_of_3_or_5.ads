@@ -25,15 +25,21 @@ with Project_Euler.CLI.Problem; use Project_Euler.CLI.Problem;
 
 package P0001_Multiples_Of_3_Or_5 is
 
+   Problem_Number : constant Natural := 1;
+   Title_Text     : constant String  := "Multiples of 3 or 5";
+   Brief_Text     : constant String  :=
+     "Find the sum of all the multiples of 3 or 5 below 1000.";
+
    type Problem_Type is new CLI_Problem_Type with null record;
 
-   overriding function Number (Problem : Problem_Type) return Natural is (1);
+   overriding function Number (Problem : Problem_Type) return Natural is
+     (Problem_Number);
 
    overriding function Title (Problem : Problem_Type) return String is
-     ("Multiples of 3 or 5");
+     (Title_Text);
 
    overriding function Brief (Problem : Problem_Type) return String is
-     ("Find the sum of all the multiples of 3 or 5 below 1000.");
+     (Brief_Text);
 
    overriding function Answer
      (Problem : in out Problem_Type; Notes : in out Unbounded_String)

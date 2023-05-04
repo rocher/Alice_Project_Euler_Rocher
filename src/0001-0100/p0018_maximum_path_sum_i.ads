@@ -53,16 +53,22 @@ with Project_Euler.CLI.Problem; use Project_Euler.CLI.Problem;
 
 package P0018_Maximum_Path_Sum_I is
 
+   Problem_Number : constant Natural := 18;
+   Title_Text     : constant String  := "Maximum path sum I";
+   Brief_Text     : constant String  :=
+     "Find the maximum total from top to bottom of the triangle below " &
+     "(see problem description)";
+
    type Problem_Type is new CLI_Problem_Type with null record;
 
-   overriding function Number (Problem : Problem_Type) return Natural is (18);
+   overriding function Number (Problem : Problem_Type) return Natural is
+     (Problem_Number);
 
    overriding function Title (Problem : Problem_Type) return String is
-     ("Maximum path sum I");
+     (Title_Text);
 
    overriding function Brief (Problem : Problem_Type) return String is
-     ("Find the maximum total from top to bottom of the triangle below " &
-      "(see problem description)");
+     (Brief_Text);
 
    overriding function Answer
      (Problem : in out Problem_Type; Notes : in out Unbounded_String)

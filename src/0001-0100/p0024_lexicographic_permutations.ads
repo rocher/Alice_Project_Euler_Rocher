@@ -30,16 +30,22 @@ with Project_Euler.CLI.Problem; use Project_Euler.CLI.Problem;
 
 package P0024_Lexicographic_Permutations is
 
+   Problem_Number : constant Natural := 24;
+   Title_Text     : constant String  := "Lexicographic permutations";
+   Brief_Text     : constant String  :=
+     "What is the millionth lexicographic permutation of the digits 0, 1, " &
+     "2, 3, 4, 5, 6, 7, 8 and 9?";
+
    type Problem_Type is new CLI_Problem_Type with null record;
 
-   overriding function Number (Problem : Problem_Type) return Natural is (24);
+   overriding function Number (Problem : Problem_Type) return Natural is
+     (Problem_Number);
 
    overriding function Title (Problem : Problem_Type) return String is
-     ("Lexicographic permutations");
+     (Title_Text);
 
    overriding function Brief (Problem : Problem_Type) return String is
-     ("What is the millionth lexicographic permutation of the digits 0, 1, " &
-      "2, 3, 4, 5, 6, 7, 8 and 9?");
+     (Brief_Text);
 
    overriding function Answer
      (Problem : in out Problem_Type; Notes : in out Unbounded_String)

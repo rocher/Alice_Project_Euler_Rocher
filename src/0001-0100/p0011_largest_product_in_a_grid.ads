@@ -50,16 +50,22 @@ with Project_Euler.CLI.Problem; use Project_Euler.CLI.Problem;
 
 package P0011_Largest_Product_In_A_Grid is
 
+   Problem_Number : constant Natural := 11;
+   Title_Text     : constant String  := "Largest product in a grid";
+   Brief_Text     : constant String  :=
+     "What is the greatest product of four adjacent numbers in the same " &
+     "direction (up, down, left, right, or diagonally) in the 20×20 grid?";
+
    type Problem_Type is new CLI_Problem_Type with null record;
 
-   overriding function Number (Problem : Problem_Type) return Natural is (11);
+   overriding function Number (Problem : Problem_Type) return Natural is
+     (Problem_Number);
 
    overriding function Title (Problem : Problem_Type) return String is
-     ("Largest product in a grid");
+     (Title_Text);
 
    overriding function Brief (Problem : Problem_Type) return String is
-     ("What is the greatest product of four adjacent numbers in the same " &
-      "direction (up, down, left, right, or diagonally) in the 20×20 grid?");
+     (Brief_Text);
 
    overriding function Answer
      (Problem : in out Problem_Type; Notes : in out Unbounded_String)

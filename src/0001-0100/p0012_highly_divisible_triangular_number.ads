@@ -42,16 +42,22 @@ with Project_Euler.CLI.Problem; use Project_Euler.CLI.Problem;
 
 package P0012_Highly_Divisible_Triangular_Number is
 
+   Problem_Number : constant Natural := 12;
+   Title_Text     : constant String  := "Highly divisible triangular number";
+   Brief_Text     : constant String  :=
+     "What is the value of the first triangle number to have over five " &
+     "hundred divisors?";
+
    type Problem_Type is new CLI_Problem_Type with null record;
 
-   overriding function Number (Problem : Problem_Type) return Natural is (12);
+   overriding function Number (Problem : Problem_Type) return Natural is
+     (Problem_Number);
 
    overriding function Title (Problem : Problem_Type) return String is
-     ("Highly divisible triangular number");
+     (Title_Text);
 
    overriding function Brief (Problem : Problem_Type) return String is
-     ("What is the value of the first triangle number to have over five " &
-      "hundred divisors?");
+     (Brief_Text);
 
    overriding function Answer
      (Problem : in out Problem_Type; Notes : in out Unbounded_String)

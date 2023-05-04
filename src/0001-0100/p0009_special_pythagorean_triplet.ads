@@ -30,16 +30,22 @@ with Project_Euler.CLI.Problem; use Project_Euler.CLI.Problem;
 
 package P0009_Special_Pythagorean_Triplet is
 
+   Problem_Number : constant Natural := 9;
+   Title_Text     : constant String  := "Special Pythagorean triplet";
+   Brief_Text     : constant String  :=
+     "There exists exactly one Pythagorean triplet for which " &
+     "a + b + c = 1000. Find the product abc.";
+
    type Problem_Type is new CLI_Problem_Type with null record;
 
-   overriding function Number (Problem : Problem_Type) return Natural is (9);
+   overriding function Number (Problem : Problem_Type) return Natural is
+     (Problem_Number);
 
    overriding function Title (Problem : Problem_Type) return String is
-     ("Special Pythagorean triplet");
+     (Title_Text);
 
    overriding function Brief (Problem : Problem_Type) return String is
-     ("There exists exactly one Pythagorean triplet for which " &
-      "a + b + c = 1000. Find the product abc.");
+     (Brief_Text);
 
    overriding function Answer
      (Problem : in out Problem_Type; Notes : in out Unbounded_String)

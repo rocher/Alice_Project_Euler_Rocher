@@ -26,16 +26,22 @@ with Project_Euler.CLI.Problem; use Project_Euler.CLI.Problem;
 
 package P0005_Smallest_Multiple is
 
+   Problem_Number : constant Natural := 5;
+   Title_Text     : constant String  := "Smallest multiple";
+   Brief_Text     : constant String  :=
+     "What is the smallest positive number that is evenly divisible by " &
+     "all of the numbers from 1 to 20?";
+
    type Problem_Type is new CLI_Problem_Type with null record;
 
-   overriding function Number (Problem : Problem_Type) return Natural is (5);
+   overriding function Number (Problem : Problem_Type) return Natural is
+     (Problem_Number);
 
    overriding function Title (Problem : Problem_Type) return String is
-     ("Smallest multiple");
+     (Title_Text);
 
    overriding function Brief (Problem : Problem_Type) return String is
-     ("What is the smallest positive number that is evenly divisible by " &
-      "all of the numbers from 1 to 20?");
+     (Brief_Text);
 
    overriding function Answer
      (Problem : in out Problem_Type; Notes : in out Unbounded_String)

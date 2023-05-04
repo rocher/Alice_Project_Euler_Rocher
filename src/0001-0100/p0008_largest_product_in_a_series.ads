@@ -26,16 +26,22 @@ with Project_Euler.CLI.Problem; use Project_Euler.CLI.Problem;
 
 package P0008_Largest_Product_In_A_Series is
 
+   Problem_Number : constant Natural := 8;
+   Title_Text     : constant String  := "Largest product in a series";
+   Brief_Text     : constant String  :=
+     "Find the thirteen adjacent digits in the 1000-digit number that " &
+     "have the greatest product. What is the value of this product?";
+
    type Problem_Type is new CLI_Problem_Type with null record;
 
-   overriding function Number (Problem : Problem_Type) return Natural is (8);
+   overriding function Number (Problem : Problem_Type) return Natural is
+     (Problem_Number);
 
    overriding function Title (Problem : Problem_Type) return String is
-     ("Largest product in a series");
+     (Title_Text);
 
    overriding function Brief (Problem : Problem_Type) return String is
-     ("Find the thirteen adjacent digits in the 1000-digit number that " &
-      "have the greatest product. What is the value of this product?");
+     (Brief_Text);
 
    overriding function Answer
      (Problem : in out Problem_Type; Notes : in out Unbounded_String)

@@ -31,16 +31,22 @@ with Project_Euler.CLI.Problem; use Project_Euler.CLI.Problem;
 
 package P0017_Number_Letter_Counts is
 
+   Problem_Number : constant Natural := 17;
+   Title_Text     : constant String  := "Number letter counts";
+   Brief_Text     : constant String  :=
+     "If all the numbers from 1 to 1000 (one thousand) inclusive were " &
+     "written out in words, how many letters would be used?";
+
    type Problem_Type is new CLI_Problem_Type with null record;
 
-   overriding function Number (Problem : Problem_Type) return Natural is (17);
+   overriding function Number (Problem : Problem_Type) return Natural is
+     (Problem_Number);
 
    overriding function Title (Problem : Problem_Type) return String is
-     ("Number letter counts");
+     (Title_Text);
 
    overriding function Brief (Problem : Problem_Type) return String is
-     ("If all the numbers from 1 to 1000 (one thousand) inclusive were " &
-      "written out in words, how many letters would be used?");
+     (Brief_Text);
 
    overriding function Answer
      (Problem : in out Problem_Type; Notes : in out Unbounded_String)

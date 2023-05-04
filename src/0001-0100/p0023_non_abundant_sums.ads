@@ -39,16 +39,22 @@ with Project_Euler.CLI.Problem; use Project_Euler.CLI.Problem;
 
 package P0023_Non_Abundant_Sums is
 
+   Problem_Number : constant Natural := 23;
+   Title_Text     : constant String  := "Non-abundant sums";
+   Brief_Text     : constant String  :=
+     "Find the sum of all the positive integers which cannot be written " &
+     "as the sum of two abundant numbers.";
+
    type Problem_Type is new CLI_Problem_Type with null record;
 
-   overriding function Number (Problem : Problem_Type) return Natural is (23);
+   overriding function Number (Problem : Problem_Type) return Natural is
+     (Problem_Number);
 
    overriding function Title (Problem : Problem_Type) return String is
-     ("Non-abundant sums");
+     (Title_Text);
 
    overriding function Brief (Problem : Problem_Type) return String is
-     ("Find the sum of all the positive integers which cannot be written " &
-      "as the sum of two abundant numbers.");
+     (Brief_Text);
 
    overriding function Answer
      (Problem : in out Problem_Type; Notes : in out Unbounded_String)

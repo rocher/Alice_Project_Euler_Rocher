@@ -31,15 +31,21 @@ with Project_Euler.CLI.Problem; use Project_Euler.CLI.Problem;
 
 package P0021_Amicable_Numbers is
 
+   Problem_Number : constant Natural := 21;
+   Title_Text     : constant String  := "Amicable numbers";
+   Brief_Text     : constant String  :=
+     "Evaluate the sum of all the amicable numbers under 10000.";
+
    type Problem_Type is new CLI_Problem_Type with null record;
 
-   overriding function Number (Problem : Problem_Type) return Natural is (21);
+   overriding function Number (Problem : Problem_Type) return Natural is
+     (Problem_Number);
 
    overriding function Title (Problem : Problem_Type) return String is
-     ("Amicable numbers");
+     (Title_Text);
 
    overriding function Brief (Problem : Problem_Type) return String is
-     ("Evaluate the sum of all the amicable numbers under 10000.");
+     (Brief_Text);
 
    overriding function Answer
      (Problem : in out Problem_Type; Notes : in out Unbounded_String)

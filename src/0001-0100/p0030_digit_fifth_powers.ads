@@ -34,16 +34,22 @@ with Project_Euler.CLI.Problem; use Project_Euler.CLI.Problem;
 
 package P0030_Digit_Fifth_Powers is
 
+   Problem_Number : constant Natural := 30;
+   Title_Text     : constant String  := "Digit fifth powers";
+   Brief_Text     : constant String  :=
+     "Find the sum of all the numbers that can be written as the sum of " &
+     "fifth powers of their digits.";
+
    type Problem_Type is new CLI_Problem_Type with null record;
 
-   overriding function Number (Problem : Problem_Type) return Natural is (30);
+   overriding function Number (Problem : Problem_Type) return Natural is
+     (Problem_Number);
 
    overriding function Title (Problem : Problem_Type) return String is
-     ("Digit fifth powers");
+     (Title_Text);
 
    overriding function Brief (Problem : Problem_Type) return String is
-     ("Find the sum of all the numbers that can be written as the sum of " &
-      "fifth powers of their digits.");
+     (Brief_Text);
 
    overriding function Answer
      (Problem : in out Problem_Type; Notes : in out Unbounded_String)

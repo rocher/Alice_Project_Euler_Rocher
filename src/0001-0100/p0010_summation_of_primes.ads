@@ -24,15 +24,21 @@ with Project_Euler.CLI.Problem; use Project_Euler.CLI.Problem;
 
 package P0010_Summation_Of_Primes is
 
+   Problem_Number : constant Natural := 10;
+   Title_Text     : constant String  := "Sum of primes";
+   Brief_Text     : constant String  :=
+     "Find the sum of all the primes below two million.";
+
    type Problem_Type is new CLI_Problem_Type with null record;
 
-   overriding function Number (Problem : Problem_Type) return Natural is (10);
+   overriding function Number (Problem : Problem_Type) return Natural is
+     (Problem_Number);
 
    overriding function Title (Problem : Problem_Type) return String is
-     ("Sum of primes");
+     (Title_Text);
 
    overriding function Brief (Problem : Problem_Type) return String is
-     ("Find the sum of all the primes below two million.");
+     (Brief_Text);
 
    overriding function Answer
      (Problem : in out Problem_Type; Notes : in out Unbounded_String)

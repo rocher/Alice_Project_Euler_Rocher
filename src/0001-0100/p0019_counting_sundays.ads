@@ -36,16 +36,22 @@ with Project_Euler.CLI.Problem; use Project_Euler.CLI.Problem;
 
 package P0019_Counting_Sundays is
 
+   Problem_Number : constant Natural := 19;
+   Title_Text     : constant String  := "Counting Sundays";
+   Brief_Text     : constant String  :=
+     "How many Sundays fell on the first of the month during the " &
+     "twentieth century (1 Jan 1901 to 31 Dec 2000)?";
+
    type Problem_Type is new CLI_Problem_Type with null record;
 
-   overriding function Number (Problem : Problem_Type) return Natural is (19);
+   overriding function Number (Problem : Problem_Type) return Natural is
+     (Problem_Number);
 
    overriding function Title (Problem : Problem_Type) return String is
-     ("Counting Sundays");
+     (Title_Text);
 
    overriding function Brief (Problem : Problem_Type) return String is
-     ("How many Sundays fell on the first of the month during the " &
-      "twentieth century (1 Jan 1901 to 31 Dec 2000)?");
+     (Brief_Text);
 
    overriding function Answer
      (Problem : in out Problem_Type; Notes : in out Unbounded_String)

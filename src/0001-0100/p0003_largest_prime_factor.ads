@@ -24,15 +24,21 @@ with Project_Euler.CLI.Problem; use Project_Euler.CLI.Problem;
 
 package P0003_Largest_Prime_Factor is
 
+   Problem_Number : constant Natural := 3;
+   Title_Text     : constant String  := "Largest primer factor";
+   Brief_Text     : constant String  :=
+     "What is the largest prime factor of the number 600851475143?";
+
    type Problem_Type is new CLI_Problem_Type with null record;
 
-   overriding function Number (Problem : Problem_Type) return Natural is (3);
+   overriding function Number (Problem : Problem_Type) return Natural is
+     (Problem_Number);
 
    overriding function Title (Problem : Problem_Type) return String is
-     ("Largest primer factor");
+     (Title_Text);
 
    overriding function Brief (Problem : Problem_Type) return String is
-     ("What is the largest prime factor of the number 600851475143?");
+     (Brief_Text);
 
    overriding function Answer
      (Problem : in out Problem_Type; Notes : in out Unbounded_String)

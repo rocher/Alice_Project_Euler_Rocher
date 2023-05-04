@@ -34,16 +34,22 @@ with Project_Euler.CLI.Problem; use Project_Euler.CLI.Problem;
 
 package P0028_Number_Spiral_Diagonals is
 
+   Problem_Number : constant Natural := 28;
+   Title_Text     : constant String  := "Number spiral diagonals";
+   Brief_Text     : constant String  :=
+     "What is the sum of the numbers on the diagonals in a 1001 by 1001 " &
+     "spiral formed in the same way?";
+
    type Problem_Type is new CLI_Problem_Type with null record;
 
-   overriding function Number (Problem : Problem_Type) return Natural is (28);
+   overriding function Number (Problem : Problem_Type) return Natural is
+     (Problem_Number);
 
    overriding function Title (Problem : Problem_Type) return String is
-     ("Number spiral diagonals");
+     (Title_Text);
 
    overriding function Brief (Problem : Problem_Type) return String is
-     ("What is the sum of the numbers on the diagonals in a 1001 by 1001 " &
-      "spiral formed in the same way?");
+     (Brief_Text);
 
    overriding function Answer
      (Problem : in out Problem_Type; Notes : in out Unbounded_String)

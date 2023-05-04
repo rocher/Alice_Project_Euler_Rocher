@@ -30,16 +30,22 @@ with Project_Euler.GUI.Plotter; use Project_Euler.GUI.Plotter;
 
 package P0002_Even_Fibonacci_Numbers is
 
+   Problem_Number : constant Natural := 2;
+   Title_Text     : constant String  := "Even Fibonacci numbers";
+   Brief_Text     : constant String  :=
+     "By considering the terms in the Fibonacci sequence whose values do " &
+     "not exceed four million, find the sum of the even-valued terms.";
+
    type Problem_Type is new GUI_Problem_Type with null record;
 
-   overriding function Number (Problem : Problem_Type) return Natural is (2);
+   overriding function Number (Problem : Problem_Type) return Natural is
+     (Problem_Number);
 
    overriding function Title (Problem : Problem_Type) return String is
-     ("Even Fibonacci numbers");
+     (Title_Text);
 
    overriding function Brief (Problem : Problem_Type) return String is
-     ("By considering the terms in the Fibonacci sequence whose values do " &
-      "not exceed four million, find the sum of the even-valued terms.");
+     (Brief_Text);
 
    overriding function Answer
      (Problem : in out Problem_Type; Notes : in out Unbounded_String)

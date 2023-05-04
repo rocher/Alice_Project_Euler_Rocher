@@ -44,16 +44,22 @@ with Project_Euler.CLI.Problem; use Project_Euler.CLI.Problem;
 
 package P0025_1000_Digit_Fibonacci_Number is
 
+   Problem_Number : constant Natural := 25;
+   Title_Text     : constant String  := "1000-digit Fibonacci number";
+   Brief_Text     : constant String  :=
+     "What is the index of the first term in the Fibonacci sequence to " &
+     "contain 1000 digits?";
+
    type Problem_Type is new CLI_Problem_Type with null record;
 
-   overriding function Number (Problem : Problem_Type) return Natural is (25);
+   overriding function Number (Problem : Problem_Type) return Natural is
+     (Problem_Number);
 
    overriding function Title (Problem : Problem_Type) return String is
-     ("1000-digit Fibonacci number");
+     (Title_Text);
 
    overriding function Brief (Problem : Problem_Type) return String is
-     ("What is the index of the first term in the Fibonacci sequence to " &
-      "contain 1000 digits?");
+     (Brief_Text);
 
    overriding function Answer
      (Problem : in out Problem_Type; Notes : in out Unbounded_String)

@@ -23,16 +23,22 @@ with Project_Euler.CLI.Problem; use Project_Euler.CLI.Problem;
 
 package P0013_Large_Sum is
 
+   Problem_Number : constant Natural := 13;
+   Title_Text     : constant String  := "Large sum";
+   Brief_Text     : constant String  :=
+     "Work out the first ten digits of the sum of the following " &
+     "one-hundred 50-digit numbers.";
+
    type Problem_Type is new CLI_Problem_Type with null record;
 
-   overriding function Number (Problem : Problem_Type) return Natural is (13);
+   overriding function Number (Problem : Problem_Type) return Natural is
+     (Problem_Number);
 
    overriding function Title (Problem : Problem_Type) return String is
-     ("Large sum");
+     (Title_Text);
 
    overriding function Brief (Problem : Problem_Type) return String is
-     ("Work out the first ten digits of the sum of the following " &
-      "one-hundred 50-digit numbers.");
+     (Brief_Text);
 
    overriding function Answer
      (Problem : in out Problem_Type; Notes : in out Unbounded_String)

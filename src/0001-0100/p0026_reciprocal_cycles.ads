@@ -39,16 +39,22 @@ with Project_Euler.CLI.Problem; use Project_Euler.CLI.Problem;
 
 package P0026_Reciprocal_Cycles is
 
+   Problem_Number : constant Natural := 26;
+   Title_Text     : constant String  := "Reciprocal cycles";
+   Brief_Text     : constant String  :=
+     "Find the value of d < 1000 for which 1/d contains the longest " &
+     "recurring cycle in its decimal fraction part.";
+
    type Problem_Type is new CLI_Problem_Type with null record;
 
-   overriding function Number (Problem : Problem_Type) return Natural is (26);
+   overriding function Number (Problem : Problem_Type) return Natural is
+     (Problem_Number);
 
    overriding function Title (Problem : Problem_Type) return String is
-     ("Reciprocal cycles");
+     (Title_Text);
 
    overriding function Brief (Problem : Problem_Type) return String is
-     ("Find the value of d < 1000 for which 1/d contains the longest " &
-      "recurring cycle in its decimal fraction part.");
+     (Brief_Text);
 
    overriding function Answer
      (Problem : in out Problem_Type; Notes : in out Unbounded_String)
