@@ -7,12 +7,12 @@
 -------------------------------------------------------------------------------
 
 with P0023_Non_Abundant_Sums;
-with Project_Euler.CLI.Runner;
+with Project_Euler.CLI;
 
 procedure C0023_Non_Abundant_Sums is
    Problem : P0023_Non_Abundant_Sums.Problem_Type;
 begin
 
-   Project_Euler.CLI.Runner.Run (Problem);
+   Project_Euler.CLI.Run (Problem);
 
 end C0023_Non_Abundant_Sums;

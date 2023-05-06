@@ -7,12 +7,12 @@
 -------------------------------------------------------------------------------
 
 with P0019_Counting_Sundays;
-with Project_Euler.CLI.Runner;
+with Project_Euler.CLI;
 
 procedure C0019_Counting_Sundays is
    Problem : P0019_Counting_Sundays.Problem_Type;
 begin
 
-   Project_Euler.CLI.Runner.Run (Problem);
+   Project_Euler.CLI.Run (Problem);
 
 end C0019_Counting_Sundays;

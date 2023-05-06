@@ -35,14 +35,14 @@
 --
 -------------------------------------------------------------------------------
 
-with Ada.Strings.Unbounded;     use Ada.Strings.Unbounded;
-with Euler_Tools_Int1;          use Euler_Tools_Int1;
-with Parse_Args;                use Parse_Args;
-with Project_Euler.CLI.Problem; use Project_Euler.CLI.Problem;
+with Ada.Strings.Unbounded;      use Ada.Strings.Unbounded;
+with Euler_Tools_Int1;           use Euler_Tools_Int1;
+with Parse_Args;                 use Parse_Args;
+with Project_Euler.CLI.Problems; use Project_Euler.CLI.Problems;
 
 package P0014_Longest_Collatz_Sequence is
 
-   type Problem_Type is new CLI_Problem_Type with private;
+   type Problem_Type is new Problem_Interface with private;
 
    Problem_Number : constant Natural := 14;
    Title_Text     : constant String  := "Longest Collatz sequence";
@@ -71,7 +71,7 @@ package P0014_Longest_Collatz_Sequence is
 
 private
 
-   type Problem_Type is new CLI_Problem_Type with record
+   type Problem_Type is new Problem_Interface with record
       Max_Length     : Integer_Type := 0;
       Max_Count      : Natural      := 0;
       Option_Reverse : Boolean      := False;

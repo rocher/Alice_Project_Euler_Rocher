@@ -39,8 +39,8 @@
 --
 -------------------------------------------------------------------------------
 
-with Ada.Strings.Unbounded;     use Ada.Strings.Unbounded;
-with Project_Euler.CLI.Problem; use Project_Euler.CLI.Problem;
+with Ada.Strings.Unbounded;      use Ada.Strings.Unbounded;
+with Project_Euler.CLI.Problems; use Project_Euler.CLI.Problems;
 
 package P0025_1000_Digit_Fibonacci_Number is
 
@@ -50,7 +50,7 @@ package P0025_1000_Digit_Fibonacci_Number is
      "What is the index of the first term in the Fibonacci sequence to " &
      "contain 1000 digits?";
 
-   type Problem_Type is new CLI_Problem_Type with null record;
+   type Problem_Type is new Problem_Interface with null record;
 
    overriding function Number (Problem : Problem_Type) return Natural is
      (Problem_Number);

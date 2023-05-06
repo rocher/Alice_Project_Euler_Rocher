@@ -7,12 +7,12 @@
 -------------------------------------------------------------------------------
 
 with P0009_Special_Pythagorean_Triplet;
-with Project_Euler.CLI.Runner;
+with Project_Euler.CLI;
 
 procedure C0009_Special_Pythagorean_Triplet is
    Problem : P0009_Special_Pythagorean_Triplet.Problem_Type;
 begin
 
-   Project_Euler.CLI.Runner.Run (Problem);
+   Project_Euler.CLI.Run (Problem);
 
 end C0009_Special_Pythagorean_Triplet;

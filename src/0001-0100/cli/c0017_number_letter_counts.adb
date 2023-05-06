@@ -7,12 +7,12 @@
 -------------------------------------------------------------------------------
 
 with P0017_Number_Letter_Counts;
-with Project_Euler.CLI.Runner;
+with Project_Euler.CLI;
 
 procedure C0017_Number_Letter_Counts is
    Problem : P0017_Number_Letter_Counts.Problem_Type;
 begin
 
-   Project_Euler.CLI.Runner.Run (Problem);
+   Project_Euler.CLI.Run (Problem);
 
 end C0017_Number_Letter_Counts;

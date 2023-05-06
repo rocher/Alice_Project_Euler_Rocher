@@ -45,8 +45,8 @@
 --
 -------------------------------------------------------------------------------
 
-with Ada.Strings.Unbounded;     use Ada.Strings.Unbounded;
-with Project_Euler.CLI.Problem; use Project_Euler.CLI.Problem;
+with Ada.Strings.Unbounded;      use Ada.Strings.Unbounded;
+with Project_Euler.CLI.Problems; use Project_Euler.CLI.Problems;
 
 package P0011_Largest_Product_In_A_Grid is
 
@@ -56,7 +56,7 @@ package P0011_Largest_Product_In_A_Grid is
      "What is the greatest product of four adjacent numbers in the same " &
      "direction (up, down, left, right, or diagonally) in the 20×20 grid?";
 
-   type Problem_Type is new CLI_Problem_Type with null record;
+   type Problem_Type is new Problem_Interface with null record;
 
    overriding function Number (Problem : Problem_Type) return Natural is
      (Problem_Number);

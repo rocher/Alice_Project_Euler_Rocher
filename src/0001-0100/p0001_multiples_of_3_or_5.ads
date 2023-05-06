@@ -20,8 +20,8 @@
 --
 -------------------------------------------------------------------------------
 
-with Ada.Strings.Unbounded;     use Ada.Strings.Unbounded;
-with Project_Euler.CLI.Problem; use Project_Euler.CLI.Problem;
+with Ada.Strings.Unbounded;      use Ada.Strings.Unbounded;
+with Project_Euler.CLI.Problems; use Project_Euler.CLI.Problems;
 
 package P0001_Multiples_Of_3_Or_5 is
 
@@ -30,7 +30,7 @@ package P0001_Multiples_Of_3_Or_5 is
    Brief_Text     : constant String  :=
      "Find the sum of all the multiples of 3 or 5 below 1000.";
 
-   type Problem_Type is new CLI_Problem_Type with null record;
+   type Problem_Type is new Problem_Interface with null record;
 
    overriding function Number (Problem : Problem_Type) return Natural is
      (Problem_Number);

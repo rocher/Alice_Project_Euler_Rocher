@@ -48,8 +48,8 @@
 --
 -------------------------------------------------------------------------------
 
-with Ada.Strings.Unbounded;     use Ada.Strings.Unbounded;
-with Project_Euler.CLI.Problem; use Project_Euler.CLI.Problem;
+with Ada.Strings.Unbounded;      use Ada.Strings.Unbounded;
+with Project_Euler.CLI.Problems; use Project_Euler.CLI.Problems;
 
 package P0018_Maximum_Path_Sum_I is
 
@@ -59,7 +59,7 @@ package P0018_Maximum_Path_Sum_I is
      "Find the maximum total from top to bottom of the triangle below " &
      "(see problem description)";
 
-   type Problem_Type is new CLI_Problem_Type with null record;
+   type Problem_Type is new Problem_Interface with null record;
 
    overriding function Number (Problem : Problem_Type) return Natural is
      (Problem_Number);

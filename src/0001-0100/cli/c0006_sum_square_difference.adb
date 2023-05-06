@@ -7,12 +7,12 @@
 -------------------------------------------------------------------------------
 
 with P0006_Sum_Square_Difference;
-with Project_Euler.CLI.Runner;
+with Project_Euler.CLI;
 
 procedure C0006_Sum_Square_Difference is
    Problem : P0006_Sum_Square_Difference.Problem_Type;
 begin
 
-   Project_Euler.CLI.Runner.Run (Problem);
+   Project_Euler.CLI.Run (Problem);
 
 end C0006_Sum_Square_Difference;

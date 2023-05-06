@@ -7,12 +7,12 @@
 --  ---------------------------------------------------------------------------
 
 with P0015_Lattice_Paths;
-with Project_Euler.CLI.Runner;
+with Project_Euler.CLI;
 
 procedure C0015_Lattice_Paths is
    Problem : P0015_Lattice_Paths.Problem_Type;
 begin
 
-   Project_Euler.CLI.Runner.Run (Problem);
+   Project_Euler.CLI.Run (Problem);
 
 end C0015_Lattice_Paths;

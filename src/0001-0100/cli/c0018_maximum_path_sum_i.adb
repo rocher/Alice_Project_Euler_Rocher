@@ -7,12 +7,12 @@
 -------------------------------------------------------------------------------
 
 with P0018_Maximum_Path_Sum_I;
-with Project_Euler.CLI.Runner;
+with Project_Euler.CLI;
 
 procedure C0018_Maximum_Path_Sum_I is
    Problem : P0018_Maximum_Path_Sum_I.Problem_Type;
 begin
 
-   Project_Euler.CLI.Runner.Run (Problem);
+   Project_Euler.CLI.Run (Problem);
 
 end C0018_Maximum_Path_Sum_I;

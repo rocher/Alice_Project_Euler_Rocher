@@ -7,12 +7,12 @@
 --  ---------------------------------------------------------------------------
 
 with P0008_Largest_Product_In_A_Series;
-with Project_Euler.CLI.Runner;
+with Project_Euler.CLI;
 
 procedure C0008_Largest_Product_In_A_Series is
    Problem : P0008_Largest_Product_In_A_Series.Problem_Type;
 begin
 
-   Project_Euler.CLI.Runner.Run (Problem);
+   Project_Euler.CLI.Run (Problem);
 
 end C0008_Largest_Product_In_A_Series;

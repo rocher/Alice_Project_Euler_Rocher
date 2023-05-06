@@ -7,12 +7,12 @@
 -------------------------------------------------------------------------------
 
 with P0025_1000_Digit_Fibonacci_Number;
-with Project_Euler.CLI.Runner;
+with Project_Euler.CLI;
 
 procedure C0025_1000_Digit_Fibonacci_Number is
    Problem : P0025_1000_Digit_Fibonacci_Number.Problem_Type;
 begin
 
-   Project_Euler.CLI.Runner.Run (Problem);
+   Project_Euler.CLI.Run (Problem);
 
 end C0025_1000_Digit_Fibonacci_Number;

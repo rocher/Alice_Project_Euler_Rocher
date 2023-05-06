@@ -7,12 +7,12 @@
 -------------------------------------------------------------------------------
 
 with P0026_Reciprocal_Cycles;
-with Project_Euler.CLI.Runner;
+with Project_Euler.CLI;
 
 procedure C0026_Reciprocal_Cycles is
    Problem : P0026_Reciprocal_Cycles.Problem_Type;
 begin
 
-   Project_Euler.CLI.Runner.Run (Problem);
+   Project_Euler.CLI.Run (Problem);
 
 end C0026_Reciprocal_Cycles;

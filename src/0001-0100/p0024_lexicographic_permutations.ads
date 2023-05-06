@@ -25,8 +25,8 @@
 --
 -------------------------------------------------------------------------------
 
-with Ada.Strings.Unbounded;     use Ada.Strings.Unbounded;
-with Project_Euler.CLI.Problem; use Project_Euler.CLI.Problem;
+with Ada.Strings.Unbounded;      use Ada.Strings.Unbounded;
+with Project_Euler.CLI.Problems; use Project_Euler.CLI.Problems;
 
 package P0024_Lexicographic_Permutations is
 
@@ -36,7 +36,7 @@ package P0024_Lexicographic_Permutations is
      "What is the millionth lexicographic permutation of the digits 0, 1, " &
      "2, 3, 4, 5, 6, 7, 8 and 9?";
 
-   type Problem_Type is new CLI_Problem_Type with null record;
+   type Problem_Type is new Problem_Interface with null record;
 
    overriding function Number (Problem : Problem_Type) return Natural is
      (Problem_Number);

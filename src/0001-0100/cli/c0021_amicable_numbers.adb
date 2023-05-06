@@ -7,12 +7,12 @@
 -------------------------------------------------------------------------------
 
 with P0021_Amicable_Numbers;
-with Project_Euler.CLI.Runner;
+with Project_Euler.CLI;
 
 procedure C0021_Amicable_Numbers is
    Problem : P0021_Amicable_Numbers.Problem_Type;
 begin
 
-   Project_Euler.CLI.Runner.Run (Problem);
+   Project_Euler.CLI.Run (Problem);
 
 end C0021_Amicable_Numbers;

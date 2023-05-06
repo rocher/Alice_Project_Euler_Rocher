@@ -7,12 +7,12 @@
 -------------------------------------------------------------------------------
 
 with P0013_Large_Sum;
-with Project_Euler.CLI.Runner;
+with Project_Euler.CLI;
 
 procedure C0013_Large_Sum is
    Problem : P0013_Large_Sum.Problem_Type;
 begin
 
-   Project_Euler.CLI.Runner.Run (Problem);
+   Project_Euler.CLI.Run (Problem);
 
 end C0013_Large_Sum;

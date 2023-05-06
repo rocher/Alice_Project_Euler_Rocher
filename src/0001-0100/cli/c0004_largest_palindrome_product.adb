@@ -7,12 +7,12 @@
 -------------------------------------------------------------------------------
 
 with P0004_Largest_Palindrome_Product;
-with Project_Euler.CLI.Runner;
+with Project_Euler.CLI;
 
 procedure C0004_Largest_Palindrome_Product is
    Problem : P0004_Largest_Palindrome_Product.Problem_Type;
 begin
 
-   Project_Euler.CLI.Runner.Run (Problem);
+   Project_Euler.CLI.Run (Problem);
 
 end C0004_Largest_Palindrome_Product;

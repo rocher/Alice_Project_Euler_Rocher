@@ -7,12 +7,12 @@
 -------------------------------------------------------------------------------
 
 with P0003_Largest_Prime_Factor;
-with Project_Euler.CLI.Runner;
+with Project_Euler.CLI;
 
 procedure C0003_Largest_Prime_Factor is
    Problem : P0003_Largest_Prime_Factor.Problem_Type;
 begin
 
-   Project_Euler.CLI.Runner.Run (Problem);
+   Project_Euler.CLI.Run (Problem);
 
 end C0003_Largest_Prime_Factor;
