@@ -37,24 +37,24 @@
 
 with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
 
-with Project_Euler.GUI.Problem; use Project_Euler.GUI.Problem;
-with Project_Euler.GUI.Plotter; use Project_Euler.GUI.Plotter;
+with Project_Euler.GUI.Problems;
+with Project_Euler.GUI.Plotters;
 
 with Euler_Tools_Int1; use Euler_Tools_Int1;
-with Parse_Args;       use Parse_Args;
-
---  with P0014_Longest_Collatz_Sequence;
 
 package P0014_Longest_Collatz_Sequence.GUI is
 
-   task type Problem_Task is new GUI_Problem_Task with
-      overriding entry Initialize (P : not null Pointer_To_Plotter_Class);
+   use Project_Euler.GUI;
+
+   task type Problem_Task is new Problems.Problem_Task with
+      overriding entry Initialize
+        (P : not null Plotters.Pointer_To_Plotter_Class);
       overriding entry Start;
       overriding entry Continue;
       overriding entry Stop;
    end Problem_Task;
 
-   function P0014_Factory return Pointer_To_GUI_Problem_Class;
+   function P0014_Factory return Problems.Pointer_To_Problem_Task;
 
    overriding function Number (Problem : Problem_Task) return Natural is
      (Problem_Number);

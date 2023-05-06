@@ -6,8 +6,8 @@
 --
 -------------------------------------------------------------------------------
 
-with Project_Euler.GUI.Runner.Gnoga_Impl;
-use Project_Euler.GUI.Runner.Gnoga_Impl;
+with Project_Euler.GUI.Runners.Gnoga;
+use Project_Euler.GUI.Runners.Gnoga;
 
 with P0007_10001st_Prime.GUI; use P0007_10001st_Prime.GUI;
 

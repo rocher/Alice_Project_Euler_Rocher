@@ -45,8 +45,9 @@ package body P0014_Longest_Collatz_Sequence.GUI is
    -- P0014_Factory --
    -------------------
 
-   function P0014_Factory return Pointer_To_GUI_Problem_Class is
-      Problem : constant Pointer_To_GUI_Problem_Class := new Problem_Task;
+   function P0014_Factory return Problems.Pointer_To_Problem_Task is
+      Problem : constant Problems.Pointer_To_Problem_Task :=
+        new Problem_Task;
    begin
       Log.Info ("New Problem_Task created");
       return Problem;
@@ -61,7 +62,7 @@ package body P0014_Longest_Collatz_Sequence.GUI is
    --  is
    --  begin
    --     Parser.Add_Option
-   --       (Make_Boolean_Option (False), Name => "REVERSE", Short_Option => 'r',
+   --       (Make_Boolean_Option (False), Name=> "REVERSE", Short_Option=> 'r',
    --        Long_Option                       => "reverse",
    --        Usage => "Traverse search space in reverse order");
    --  end Configure_Options;
@@ -82,7 +83,7 @@ package body P0014_Longest_Collatz_Sequence.GUI is
    -- Plotter_Setup --
    -------------------
 
-   procedure Plotter_Setup (Plotter : Pointer_To_Plotter_Class) is
+   procedure Plotter_Setup (Plotter : Plotters.Pointer_To_Plotter_Class) is
    begin
       Plotter.Set_Axes
         (X_Min => 0.0, X_Max => 1_000_000.0, Y_Min => 0.0, Y_Max => 600.0);
@@ -97,7 +98,7 @@ package body P0014_Longest_Collatz_Sequence.GUI is
    ------------------
 
    task body Problem_Task is
-      Plotter : Pointer_To_Plotter_Class;
+      Plotter : Plotters.Pointer_To_Plotter_Class;
 
       Seed       : Integer_Type;
       Number     : Integer_Type;
@@ -156,7 +157,7 @@ package body P0014_Longest_Collatz_Sequence.GUI is
 
       procedure Show_Info is
       begin
-         Plotter.Set_Layer_Info;
+         Plotter.Set_Layer_Information;
          Plotter.Stroke_color ("#000");
          Plotter.Fill_Color ("#000");
          Plotter.Font ("sans-serif", "22px");
@@ -179,7 +180,7 @@ package body P0014_Longest_Collatz_Sequence.GUI is
 
       procedure Show_Intuition is
       begin
-         Plotter.Set_Layer_Info;
+         Plotter.Set_Layer_Information;
          Plotter.Stroke_color ("#000");
          Plotter.Fill_Color ("#000");
          Plotter.Line_Width (1);
@@ -201,7 +202,7 @@ package body P0014_Longest_Collatz_Sequence.GUI is
 
    begin  -- Task
 
-      accept Initialize (P : not null Pointer_To_Plotter_Class) do
+      accept Initialize (P : not null Plotters.Pointer_To_Plotter_Class) do
          Plotter := P;
       end Initialize;
 
@@ -275,7 +276,7 @@ package body P0014_Longest_Collatz_Sequence.GUI is
                select
                   accept Continue;
                   Plotter.Clear_Plot;
-                  Plotter.Set_Layer_Normal;
+                  Plotter.Set_Layer_Drawing;
                or
                   accept Stop;
                   exit Problem_Loop;

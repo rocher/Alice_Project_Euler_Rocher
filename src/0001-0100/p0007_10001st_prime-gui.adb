@@ -24,8 +24,9 @@ with Euler_Tools; use Euler_Tools;
 
 package body P0007_10001st_Prime.GUI is
 
-   function P0007_Factory return Pointer_To_GUI_Problem_Class is
-      Problem : constant Pointer_To_GUI_Problem_Class := new Problem_Task;
+   function P0007_Factory return Problems.Pointer_To_Problem_Task is
+      Problem : constant Problems.Pointer_To_Problem_Task :=
+        new Problem_Task;
    begin
       return Problem;
    end P0007_Factory;
@@ -35,7 +36,7 @@ package body P0007_10001st_Prime.GUI is
    -------------------
 
    procedure Plotter_Setup
-     (Plotter : Pointer_To_Plotter_Class; Module : Natural)
+     (Plotter : Plotters.Pointer_To_Plotter_Class; Module : Natural)
    is
    begin
       Plotter.Set_Axes (Min => -10.0, Max => Float (Module));
@@ -49,7 +50,7 @@ package body P0007_10001st_Prime.GUI is
    ------------------
 
    task body Problem_Task is
-      Plotter : Pointer_To_Plotter_Class;
+      Plotter : Plotters.Pointer_To_Plotter_Class;
 
       Module : constant Natural := 329;
       Color  : String (1 .. 4)  := "#xxx";
@@ -60,7 +61,7 @@ package body P0007_10001st_Prime.GUI is
       X, Y   : Float;
    begin
 
-      accept Initialize (P : not null Pointer_To_Plotter_Class) do
+      accept Initialize (P : not null Plotters.Pointer_To_Plotter_Class) do
          Plotter := P;
       end Initialize;
 

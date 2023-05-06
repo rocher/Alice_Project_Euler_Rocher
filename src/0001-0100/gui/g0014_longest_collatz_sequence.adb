@@ -6,8 +6,8 @@
 --
 -------------------------------------------------------------------------------
 
-with Project_Euler.GUI.Runner.Gnoga_Impl;
-use Project_Euler.GUI.Runner.Gnoga_Impl;
+with Project_Euler.GUI.Runners.Gnoga;
+use Project_Euler.GUI.Runners.Gnoga;
 
 with P0014_Longest_Collatz_Sequence.GUI;
 use P0014_Longest_Collatz_Sequence.GUI;
