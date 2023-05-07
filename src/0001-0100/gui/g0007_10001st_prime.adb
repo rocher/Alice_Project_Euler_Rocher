@@ -6,14 +6,13 @@
 --
 -------------------------------------------------------------------------------
 
-with Project_Euler.GUI.Runners.Gnoga;
-use Project_Euler.GUI.Runners.Gnoga;
+with Project_Euler.GUI.Runners.Gnoga; use Project_Euler.GUI.Runners.Gnoga;
 
 with P0007_10001st_Prime.GUI; use P0007_10001st_Prime.GUI;
 
 procedure G0007_10001st_Prime is
 
-   Runner : Gnoga_Runner_Type;
+   Runner : Runner_Gnoga_Type;
 
 begin
 

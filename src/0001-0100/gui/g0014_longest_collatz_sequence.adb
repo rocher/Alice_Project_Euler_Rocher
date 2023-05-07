@@ -6,15 +6,14 @@
 --
 -------------------------------------------------------------------------------
 
-with Project_Euler.GUI.Runners.Gnoga;
-use Project_Euler.GUI.Runners.Gnoga;
+with Project_Euler.GUI.Runners.Gnoga; use Project_Euler.GUI.Runners.Gnoga;
 
 with P0014_Longest_Collatz_Sequence.GUI;
 use P0014_Longest_Collatz_Sequence.GUI;
 
 procedure G0014_Longest_Collatz_Sequence is
 
-   Runner : Gnoga_Runner_Type;
+   Runner : Runner_Gnoga_Type;
 
 begin
 

@@ -15,7 +15,7 @@ use Project_Euler.GUI.Runner.Gnoga_Impl;
 use Project_Euler.GUI.Factory;
 
 procedure G0002_Even_Fibonacci_Numbers is
-   Runner : Project_Euler.GUI.Runner.Gnoga_Impl.Gnoga_Runner_Type;
+   Runner : Project_Euler.GUI.Runners.Gnoga.Runner_Gnoga_Type;
 
    function P0002_Factory is new Problem_Factory
      (P0002_Even_Fibonacci_Numbers.Problem_Type);
