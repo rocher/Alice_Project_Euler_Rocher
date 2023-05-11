@@ -23,10 +23,8 @@
 --
 -------------------------------------------------------------------------------
 
-with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
-
-with Project_Euler.GUI.Problem; use Project_Euler.GUI.Problem;
-with Project_Euler.GUI.Plotter; use Project_Euler.GUI.Plotter;
+with Ada.Strings.Unbounded;      use Ada.Strings.Unbounded;
+with Project_Euler.CLI.Problems; use Project_Euler.CLI.Problems;
 
 package P0002_Even_Fibonacci_Numbers is
 
@@ -36,7 +34,7 @@ package P0002_Even_Fibonacci_Numbers is
      "By considering the terms in the Fibonacci sequence whose values do " &
      "not exceed four million, find the sum of the even-valued terms.";
 
-   type Problem_Type is new GUI_Problem_Type with null record;
+   type Problem_Type is new Problem_Interface with null record;
 
    overriding function Number (Problem : Problem_Type) return Natural is
      (Problem_Number);
@@ -50,11 +48,5 @@ package P0002_Even_Fibonacci_Numbers is
    overriding function Answer
      (Problem : in out Problem_Type; Notes : in out Unbounded_String)
       return String;
-
-   overriding procedure Plotter_Setup
-     (Problem : Problem_Type; Plotter : Pointer_To_Plotter_Class);
-
-   overriding procedure On_Start
-     (Problem : in out Problem_Type; Plotter : Pointer_To_Plotter_Class);
 
 end P0002_Even_Fibonacci_Numbers;
