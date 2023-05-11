@@ -35,7 +35,7 @@ package body P0007_10001st_Prime is
       Answer : Integer_Type;
    begin
 
-      Answer := Prime_Nth (1_000_000);
+      Answer := Prime_Nth (10_001);
 
       return To_String (Answer);
    end Answer;
