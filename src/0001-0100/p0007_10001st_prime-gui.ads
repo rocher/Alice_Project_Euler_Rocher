@@ -20,8 +20,6 @@
 --
 -------------------------------------------------------------------------------
 
-with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
-
 with Project_Euler.GUI.Problems;
 with Project_Euler.GUI.Plotters; use Project_Euler.GUI;
 

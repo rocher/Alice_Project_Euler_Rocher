@@ -27,7 +27,6 @@
 --
 -------------------------------------------------------------------------------
 
-with Ada.Strings.Unbounded;              use Ada.Strings.Unbounded;
 with Ada.Containers.Doubly_Linked_Lists; use Ada.Containers;
 with Text_IO;                            use Text_IO;
 
