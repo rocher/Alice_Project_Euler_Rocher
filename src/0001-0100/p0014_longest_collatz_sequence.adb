@@ -70,13 +70,15 @@ package body P0014_Longest_Collatz_Sequence is
    ------------
 
    overriding function Answer
-     (Problem : in out Problem_Type; Notes : in out Unbounded_String)
-      return String
+     (Problem : Problem_Type; Notes : in out Unbounded_String) return String
    is
       Start   : Integer_Type;
       Δ_Start : Integer_Type;
       Last    : Integer_Type;
       Number  : Integer_Type;
+
+      Max_Length : Integer_Type := 0;
+      Max_Count  : Natural      := 0;
 
       Length : Integer_Type := 0;
       Answer : Integer_Type := 0;
@@ -86,8 +88,8 @@ package body P0014_Longest_Collatz_Sequence is
       Δ_Start := (if Problem.Option_Reverse then -1 else 1);
       Last    := (if Problem.Option_Reverse then 1 else 999_999);
 
-      Problem.Max_Length := 0;
-      Problem.Max_Count  := 0;
+      Max_Length := 0;
+      Max_Count  := 0;
 
       loop
          Number := Collatz_Next (Start);
@@ -99,10 +101,10 @@ package body P0014_Longest_Collatz_Sequence is
             exit when Number = 1;
          end loop;
 
-         if Length > Problem.Max_Length then
-            Problem.Max_Length := Length;
-            Problem.Max_Count  := @ + 1;
-            Answer             := Start;
+         if Length > Max_Length then
+            Max_Length := Length;
+            Max_Count  := @ + 1;
+            Answer     := Start;
          end if;
 
          exit when Start = Last;
@@ -111,8 +113,8 @@ package body P0014_Longest_Collatz_Sequence is
 
       Notes :=
         To_Unbounded_String
-          ("The chain contains" & Problem.Max_Length'Image &
-           " numbers; Max changed" & Problem.Max_Count'Image & " times");
+          ("The chain contains" & Max_Length'Image & " numbers; Max changed" &
+           Max_Count'Image & " times");
 
       return To_String (Answer);
    end Answer;

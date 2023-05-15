@@ -29,8 +29,7 @@ package body P0007_10001st_Prime is
    ------------
 
    overriding function Answer
-     (Problem : in out Problem_Type; Notes : in out Unbounded_String)
-      return String
+     (Problem : Problem_Type; Notes : in out Unbounded_String) return String
    is
       Answer : Integer_Type;
    begin

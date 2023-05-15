@@ -24,8 +24,7 @@ with Euler_Tools_Int2; use Euler_Tools_Int2;
 package body P0003_Largest_Prime_Factor is
 
    overriding function Answer
-     (Problem : in out Problem_Type; Notes : in out Unbounded_String)
-      return String
+     (Problem : Problem_Type; Notes : in out Unbounded_String) return String
    is
       Number : constant Integer_Type := 600_851_475_143;
       Answer : Integer_Type          := Square_Root (Number);

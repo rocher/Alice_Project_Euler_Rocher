@@ -47,7 +47,6 @@ package P0015_Lattice_Paths is
      (Brief_Text);
 
    overriding function Answer
-     (Problem : in out Problem_Type; Notes : in out Unbounded_String)
-      return String;
+     (Problem : Problem_Type; Notes : in out Unbounded_String) return String;
 
 end P0015_Lattice_Paths;

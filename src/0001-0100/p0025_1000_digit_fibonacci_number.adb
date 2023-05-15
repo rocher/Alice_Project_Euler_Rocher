@@ -51,8 +51,7 @@ use Euler_Tools;
 package body P0025_1000_Digit_Fibonacci_Number is
 
    overriding function Answer
-     (Problem : in out Problem_Type; Notes : in out Unbounded_String)
-      return String
+     (Problem : Problem_Type; Notes : in out Unbounded_String) return String
    is
       F1     : Big_Natural := 1;
       F2     : Big_Natural := 1;

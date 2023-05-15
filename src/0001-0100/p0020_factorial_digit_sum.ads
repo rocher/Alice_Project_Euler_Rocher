@@ -44,7 +44,6 @@ package P0020_Factorial_Digit_Sum is
      (Brief_Text);
 
    overriding function Answer
-     (Problem : in out Problem_Type; Notes : in out Unbounded_String)
-      return String;
+     (Problem : Problem_Type; Notes : in out Unbounded_String) return String;
 
 end P0020_Factorial_Digit_Sum;

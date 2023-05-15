@@ -30,8 +30,7 @@ with Euler_Tools; use Euler_Tools;
 package body P0009_Special_Pythagorean_Triplet is
 
    overriding function Answer
-     (Problem : in out Problem_Type; Notes : in out Unbounded_String)
-      return String
+     (Problem : Problem_Type; Notes : in out Unbounded_String) return String
    is
       A, B   : Natural;
       Answer : Natural;

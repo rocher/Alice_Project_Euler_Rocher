@@ -44,7 +44,6 @@ package P0008_Largest_Product_In_A_Series is
      (Brief_Text);
 
    overriding function Answer
-     (Problem : in out Problem_Type; Notes : in out Unbounded_String)
-      return String;
+     (Problem : Problem_Type; Notes : in out Unbounded_String) return String;
 
 end P0008_Largest_Product_In_A_Series;

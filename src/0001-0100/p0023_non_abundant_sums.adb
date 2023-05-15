@@ -39,8 +39,7 @@ with Euler_Tools; use Euler_Tools;
 package body P0023_Non_Abundant_Sums is
 
    overriding function Answer
-     (Problem : in out Problem_Type; Notes : in out Unbounded_String)
-      return String
+     (Problem : Problem_Type; Notes : in out Unbounded_String) return String
    is
       Is_Sum_Of_Abundant_Numbers : Boolean;
       Non_Abundant_Counter       : Natural      := 0;

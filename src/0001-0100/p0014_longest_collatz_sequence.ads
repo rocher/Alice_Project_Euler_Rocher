@@ -66,15 +66,12 @@ package P0014_Longest_Collatz_Sequence is
      (Problem : in out Problem_Type; Parser : Parse_Args.Argument_Parser);
 
    overriding function Answer
-     (Problem : in out Problem_Type; Notes : in out Unbounded_String)
-      return String;
+     (Problem : Problem_Type; Notes : in out Unbounded_String) return String;
 
 private
 
    type Problem_Type is new Problem_Interface with record
-      Max_Length     : Integer_Type := 0;
-      Max_Count      : Natural      := 0;
-      Option_Reverse : Boolean      := False;
+      Option_Reverse : Boolean := False;
    end record;
 
 end P0014_Longest_Collatz_Sequence;

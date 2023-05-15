@@ -53,8 +53,7 @@ with Euler_Tools; use Euler_Tools;
 package body P0018_Maximum_Path_Sum_I is
 
    overriding function Answer
-     (Problem : in out Problem_Type; Notes : in out Unbounded_String)
-      return String
+     (Problem : Problem_Type; Notes : in out Unbounded_String) return String
    is
       subtype Size_Range is Natural range 1 .. 15;
       Triangle : constant array (Size_Range, Size_Range) of Natural :=

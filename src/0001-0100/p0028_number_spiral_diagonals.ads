@@ -52,7 +52,6 @@ package P0028_Number_Spiral_Diagonals is
      (Brief_Text);
 
    overriding function Answer
-     (Problem : in out Problem_Type; Notes : in out Unbounded_String)
-      return String;
+     (Problem : Problem_Type; Notes : in out Unbounded_String) return String;
 
 end P0028_Number_Spiral_Diagonals;

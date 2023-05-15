@@ -31,8 +31,7 @@ with Euler_Tools; use Euler_Tools;
 package body P0021_Amicable_Numbers is
 
    overriding function Answer
-     (Problem : in out Problem_Type; Notes : in out Unbounded_String)
-      return String
+     (Problem : Problem_Type; Notes : in out Unbounded_String) return String
    is
       Amicable_Counter : Natural      := 0;
       Answer           : Integer_Type := 0;

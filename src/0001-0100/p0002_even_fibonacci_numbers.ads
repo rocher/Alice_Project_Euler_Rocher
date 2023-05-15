@@ -46,7 +46,7 @@ package P0002_Even_Fibonacci_Numbers is
      (Brief_Text);
 
    overriding function Answer
-     (Problem : in out Problem_Type; Notes : in out Unbounded_String)
+     (Problem : Problem_Type; Notes : in out Unbounded_String)
       return String;
 
 end P0002_Even_Fibonacci_Numbers;

@@ -42,8 +42,7 @@ with Euler_Tools; use Euler_Tools;
 package body P0012_Highly_Divisible_Triangular_Number is
 
    overriding function Answer
-     (Problem : in out Problem_Type; Notes : in out Unbounded_String)
-      return String
+     (Problem : Problem_Type; Notes : in out Unbounded_String) return String
    is
       Number   : Integer_Type := 8;
       Divisors : Set_Type;

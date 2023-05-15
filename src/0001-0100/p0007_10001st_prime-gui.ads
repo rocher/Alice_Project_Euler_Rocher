@@ -45,8 +45,7 @@ package P0007_10001st_Prime.GUI is
      (Brief_Text);
 
    overriding function Answer
-     (Problem : in out Problem_Task; Notes : in out Unbounded_String)
-      return String is
+     (Problem : Problem_Task; Notes : in out Unbounded_String) return String is
      ("Use CLI implementation");
 
 end P0007_10001st_Prime.GUI;

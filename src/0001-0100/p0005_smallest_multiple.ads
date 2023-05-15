@@ -44,7 +44,6 @@ package P0005_Smallest_Multiple is
      (Brief_Text);
 
    overriding function Answer
-     (Problem : in out Problem_Type; Notes : in out Unbounded_String)
-      return String;
+     (Problem : Problem_Type; Notes : in out Unbounded_String) return String;
 
 end P0005_Smallest_Multiple;

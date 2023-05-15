@@ -65,24 +65,8 @@ package P0014_Longest_Collatz_Sequence.GUI is
    overriding function Brief (Problem : Problem_Task) return String is
      (Brief_Text);
 
-   --  overriding procedure Configure_Options
-   --    (Problem : Problem_Task; Parser : in out Parse_Args.Argument_Parser);
-
-   --  overriding procedure Parse_Options
-   --    (Problem : in out Problem_Task; Parser : Parse_Args.Argument_Parser);
-
    overriding function Answer
-     (Problem : in out Problem_Task; Notes : in out Unbounded_String)
-      return String is
+     (Problem : Problem_Task; Notes : in out Unbounded_String) return String is
      ("Use CLI implementation");
-
-private
-
---  task type Problem_Task is new GUI_Problem_Task with
---     Max_Length : Integer_Type := 0;
---     Max_Count  : Natural      := 0;
-
---     Option_Reverse : Boolean := False;
---  end Problem_Task;
 
 end P0014_Longest_Collatz_Sequence.GUI;

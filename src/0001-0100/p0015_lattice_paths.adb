@@ -28,8 +28,7 @@ with Euler_Tools_Int3; use Euler_Tools_Int3;
 package body P0015_Lattice_Paths is
 
    overriding function Answer
-     (Problem : in out Problem_Type; Notes : in out Unbounded_String)
-      return String
+     (Problem : Problem_Type; Notes : in out Unbounded_String) return String
    is
       Answer : Integer_Type;
    begin

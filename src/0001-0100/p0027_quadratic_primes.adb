@@ -43,8 +43,7 @@ with Euler_Tools; use Euler_Tools;
 package body P0027_Quadratic_Primes is
 
    overriding function Answer
-     (Problem : in out Problem_Type; Notes : in out Unbounded_String)
-      return String
+     (Problem : Problem_Type; Notes : in out Unbounded_String) return String
    is
       Coefficient_A, Coefficient_B : Integer_Type;
       Max_Sequence                 : Natural := 0;

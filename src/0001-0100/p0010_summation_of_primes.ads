@@ -41,7 +41,6 @@ package P0010_Summation_Of_Primes is
      (Brief_Text);
 
    overriding function Answer
-     (Problem : in out Problem_Type; Notes : in out Unbounded_String)
-      return String;
+     (Problem : Problem_Type; Notes : in out Unbounded_String) return String;
 
 end P0010_Summation_Of_Primes;

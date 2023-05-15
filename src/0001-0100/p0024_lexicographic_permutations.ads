@@ -48,7 +48,6 @@ package P0024_Lexicographic_Permutations is
      (Brief_Text);
 
    overriding function Answer
-     (Problem : in out Problem_Type; Notes : in out Unbounded_String)
-      return String;
+     (Problem : Problem_Type; Notes : in out Unbounded_String) return String;
 
 end P0024_Lexicographic_Permutations;

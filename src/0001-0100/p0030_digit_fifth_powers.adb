@@ -34,8 +34,7 @@ with Euler_Tools; use Euler_Tools;
 package body P0030_Digit_Fifth_Powers is
 
    overriding function Answer
-     (Problem : in out Problem_Type; Notes : in out Unbounded_String)
-      return String
+     (Problem : Problem_Type; Notes : in out Unbounded_String) return String
    is
       P5      : array (0 .. 9) of Integer_Type;
       Powers  : Integer_Type;
