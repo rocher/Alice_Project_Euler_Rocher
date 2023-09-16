@@ -35,7 +35,9 @@
 --
 -------------------------------------------------------------------------------
 
-with Simple_Logging; use Simple_Logging;
+with Euler_Tools_Int1; use Euler_Tools_Int1;
+with Parse_Args;       use Parse_Args;
+with Simple_Logging;
 
 package body P0014_Longest_Collatz_Sequence is
 
@@ -43,11 +45,9 @@ package body P0014_Longest_Collatz_Sequence is
    -- Configure_Options --
    -----------------------
 
-   overriding procedure Configure_Options
-     (Problem : Problem_Type; Parser : in out Parse_Args.Argument_Parser)
-   is
+   overriding procedure Configure_Options (Problem : Problem_Type) is
    begin
-      Parser.Add_Option
+      Project_Euler.Argument_Parser.Add_Option
         (Make_Boolean_Option (False), Name => "REVERSE", Short_Option => 'r',
          Long_Option                       => "reverse",
          Usage => "Traverse search space in reverse order");
@@ -57,11 +57,10 @@ package body P0014_Longest_Collatz_Sequence is
    -- Parse_Options --
    -------------------
 
-   overriding procedure Parse_Options
-     (Problem : in out Problem_Type; Parser : Parse_Args.Argument_Parser)
-   is
+   overriding procedure Parse_Options (Problem : in out Problem_Type) is
    begin
-      Problem.Option_Reverse := Parser.Boolean_Value ("REVERSE");
+      Problem.Option_Reverse :=
+        Project_Euler.Argument_Parser.Boolean_Value ("REVERSE");
       Simple_Logging.Debug ("Reverse = " & Problem.Option_Reverse'Image);
    end Parse_Options;
 

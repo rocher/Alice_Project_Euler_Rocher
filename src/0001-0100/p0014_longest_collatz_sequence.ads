@@ -36,8 +36,6 @@
 -------------------------------------------------------------------------------
 
 with Ada.Strings.Unbounded;      use Ada.Strings.Unbounded;
-with Euler_Tools_Int1;           use Euler_Tools_Int1;
-with Parse_Args;                 use Parse_Args;
 with Project_Euler.CLI.Problems; use Project_Euler.CLI.Problems;
 
 package P0014_Longest_Collatz_Sequence is
@@ -59,11 +57,9 @@ package P0014_Longest_Collatz_Sequence is
    overriding function Brief (Problem : Problem_Type) return String is
      (Brief_Text);
 
-   overriding procedure Configure_Options
-     (Problem : Problem_Type; Parser : in out Parse_Args.Argument_Parser);
+   overriding procedure Configure_Options (Problem : Problem_Type);
 
-   overriding procedure Parse_Options
-     (Problem : in out Problem_Type; Parser : Parse_Args.Argument_Parser);
+   overriding procedure Parse_Options (Problem : in out Problem_Type);
 
    overriding function Answer
      (Problem : Problem_Type; Notes : in out Unbounded_String) return String;

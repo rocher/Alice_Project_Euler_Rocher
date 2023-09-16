@@ -25,8 +25,7 @@ with Euler_Tools; use Euler_Tools;
 package body P0007_10001st_Prime.GUI is
 
    function P0007_Factory return Problems.Pointer_To_Problem_Task is
-      Problem : constant Problems.Pointer_To_Problem_Task :=
-        new Problem_Task;
+      Problem : constant Problems.Pointer_To_Problem_Task := new Problem_Task;
    begin
       return Problem;
    end P0007_Factory;

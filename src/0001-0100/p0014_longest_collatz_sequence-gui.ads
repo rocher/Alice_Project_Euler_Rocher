@@ -35,12 +35,8 @@
 --
 -------------------------------------------------------------------------------
 
-with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
-
 with Project_Euler.GUI.Problems;
 with Project_Euler.GUI.Plotters;
-
-with Euler_Tools_Int1; use Euler_Tools_Int1;
 
 package P0014_Longest_Collatz_Sequence.GUI is
 
@@ -52,9 +48,11 @@ package P0014_Longest_Collatz_Sequence.GUI is
       overriding entry Start;
       overriding entry Continue;
       overriding entry Stop;
+      --  overriding entry Get_Options;
    end Problem_Task;
 
    function P0014_Factory return Problems.Pointer_To_Problem_Task;
+   procedure P0014_Configure_Options;
 
    overriding function Number (Problem : Problem_Task) return Natural is
      (Problem_Number);

@@ -16,6 +16,6 @@ procedure G0007_10001st_Prime is
 
 begin
 
-   Runner.Run (P0007_Factory'Unrestricted_Access);
+   Runner.Run (P0007_Factory'Access, null);
 
 end G0007_10001st_Prime;

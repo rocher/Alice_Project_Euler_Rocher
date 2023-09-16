@@ -36,6 +36,9 @@
 -------------------------------------------------------------------------------
 
 with Simple_Logging;
+with Parse_Args;
+
+with Euler_Tools_Int1; use Euler_Tools_Int1;
 
 package body P0014_Longest_Collatz_Sequence.GUI is
 
@@ -46,38 +49,23 @@ package body P0014_Longest_Collatz_Sequence.GUI is
    -------------------
 
    function P0014_Factory return Problems.Pointer_To_Problem_Task is
-      Problem : constant Problems.Pointer_To_Problem_Task :=
-        new Problem_Task;
+      Problem : constant Problems.Pointer_To_Problem_Task := new Problem_Task;
    begin
       Log.Info ("New Problem_Task created");
       return Problem;
    end P0014_Factory;
 
-   -----------------------
-   -- Configure_Options --
-   -----------------------
+   -----------------------------
+   -- P0014_Configure_Options --
+   -----------------------------
 
-   --  overriding procedure Configure_Options
-   --    (Problem : Problem_Task; Parser : in out Parse_Args.Argument_Parser)
-   --  is
-   --  begin
-   --     Parser.Add_Option
-   --       (Make_Boolean_Option (False), Name=> "REVERSE", Short_Option=> 'r',
-   --        Long_Option                       => "reverse",
-   --        Usage => "Traverse search space in reverse order");
-   --  end Configure_Options;
-
-   -------------------
-   -- Parse_Options --
-   -------------------
-
-   --  overriding procedure Parse_Options
-   --    (Problem : in out Problem_Task; Parser : Parse_Args.Argument_Parser)
-   --  is
-   --  begin
-   --     Problem.Option_Reverse := Parser.Boolean_Value ("REVERSE");
-   --     Simple_Logging.Debug ("Reverse = " & Problem.Option_Reverse'Image);
-   --  end Parse_Options;
+   procedure P0014_Configure_Options is
+   begin
+      Project_Euler.Argument_Parser.Add_Option
+        (Parse_Args.Make_Boolean_Option (False), Name => "REVERSE",
+         Short_Option => 'r', Long_Option => "reverse",
+         Usage => "Traverse search space in reverse order");
+   end P0014_Configure_Options;
 
    -------------------
    -- Plotter_Setup --
@@ -101,10 +89,15 @@ package body P0014_Longest_Collatz_Sequence.GUI is
       Plotter : Plotters.Pointer_To_Plotter_Class;
 
       Seed       : Integer_Type;
+      Δ_Seed     : Integer_Type;
+      Seed_Pause : Integer_Type;
+      Seed_Stop  : Integer_Type;
       Number     : Integer_Type;
       Length     : Integer_Type;
       Answer     : Integer_Type;
       Max_Length : Integer_Type := 0;
+
+      Option_Reverse : Boolean := False;
 
       --  block computations
       Σ_Length    : Float;
@@ -122,16 +115,17 @@ package body P0014_Longest_Collatz_Sequence.GUI is
       Color_Block_Max      : constant String := "#33c";
       Color_Block_Min      : constant String := "#c3c";
 
-      Has_Paused : Boolean := False;
-
       procedure Draw_Block is
+         Base : constant Float :=
+           (if Option_Reverse then Float (Seed)
+            else Float (Seed - Block_Size));
       begin
          Plotter.Fill_Rectangle
-           (Float (Seed), 0.0, Float (Seed) + Float (Block_Size),
+           (Base, 0.0, Base + Float (Block_Size),
             Σ_Length / Float (Block_Size));
          Plotter.Stroke_color (Color_Rectangle);
          Plotter.Rectangle
-           (Float (Seed), 0.0, Float (Seed) + Float (Block_Size),
+           (Base, 0.0, Base + Float (Block_Size),
             Σ_Length / Float (Block_Size));
          if Has_Max then
             Plotter.Stroke_color (Color_Abs_Max);
@@ -188,7 +182,9 @@ package body P0014_Longest_Collatz_Sequence.GUI is
          Plotter.Font ("sans-serif", "22px");
          Plotter.Text
            (50_000.0, 470.0,
-            "Intuition:" & "same as previous interval, scaled 1/10");
+            "Intuition:" & "same as " &
+            (if Option_Reverse then "previous" else "next") &
+            " interval, scaled 1/10");
          Plotter.Line_Width (4);
          Plotter.Line_Dash (5, 3);
          Plotter.Stroke_color (Color_Last_Rectangle);
@@ -196,14 +192,15 @@ package body P0014_Longest_Collatz_Sequence.GUI is
          Plotter.Line_Dash (10, 0);
 
          Plotter.Pause;
-         Block_Size := 5_000;
-         Has_Paused := True;
+         Block_Size := (if Option_Reverse then 5_000 else 10_000);
       end Show_Intuition;
 
    begin  -- Task
 
       accept Initialize (P : not null Plotters.Pointer_To_Plotter_Class) do
-         Plotter := P;
+         Plotter        := P;
+         Option_Reverse :=
+           Project_Euler.Argument_Parser.Boolean_Value ("REVERSE");
       end Initialize;
 
       Plotter_Setup (Plotter);
@@ -216,7 +213,19 @@ package body P0014_Longest_Collatz_Sequence.GUI is
          Plotter.Start;
          Plotter.Fill_Color (Color_Fill_Rectangle);
 
-         Seed       := 999_999;
+         if Option_Reverse then
+            Seed       := 999_999;
+            Δ_Seed     := -1;
+            Seed_Pause := 790_000;
+            Seed_Stop  := 1;
+            Block_Size := 10_000;
+         else
+            Seed       := 1;
+            Δ_Seed     := 1;
+            Seed_Pause := 390_000;
+            Seed_Stop  := 999_999;
+            Block_Size := 5_000;
+         end if;
          Number     := 0;
          Length     := 0;
          Answer     := 0;
@@ -224,8 +233,6 @@ package body P0014_Longest_Collatz_Sequence.GUI is
 
          Σ_Length := 0.0;
          Has_Max  := False;
-
-         Has_Paused := False;
 
          Problem_Loop :
          loop
@@ -258,11 +265,11 @@ package body P0014_Longest_Collatz_Sequence.GUI is
             end if;
 
             --  Block_Finished
-            if Seed mod Block_Size = 0 or else Seed = 1 then
+            if Seed mod Block_Size = 0 or else Seed = Seed_Stop then
 
                Draw_Block;
 
-               if Seed = 790_000 then
+               if Seed = Seed_Pause then
                   Show_Info;
                   goto Pause_And_Accept_Continue_Or_Stop;
                elsif Seed = 100_000 then
@@ -296,8 +303,8 @@ package body P0014_Longest_Collatz_Sequence.GUI is
                Block_Min_Y := Integer_Type'Last;
             end if;
 
-            exit Problem_Loop when Seed = 1;  --  ! Intuition: Seed >= 99_999
-            Seed := Seed - 1;
+            exit Problem_Loop when Seed = Seed_Stop;
+            Seed := Seed + Δ_Seed;
 
          end loop Problem_Loop;
 

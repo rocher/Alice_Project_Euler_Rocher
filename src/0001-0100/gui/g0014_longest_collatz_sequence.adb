@@ -17,6 +17,6 @@ procedure G0014_Longest_Collatz_Sequence is
 
 begin
 
-   Runner.Run (P0014_Factory'Unrestricted_Access);
+   Runner.Run (P0014_Factory'Access, P0014_Configure_Options'Access);
 
 end G0014_Longest_Collatz_Sequence;
