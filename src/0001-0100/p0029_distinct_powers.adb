@@ -39,37 +39,64 @@ package body P0029_Distinct_Powers is
      (Problem : Problem_Type; Notes : in out Unbounded_String) return String
    is
       use List_Package;
-      Answer : Integer_Type := 99**2;
+      Answer : Integer_Type := 99**2;  --  all possible combinations
    begin
+      --  The main idea is to count how many "distinct combinations" of base
+      --  and exponent exists within the given ranges. Both 6⁴ and 36² produce
+      --  the same result, so in this context they are considered the same
+      --  combination.
+      --
+      --  This counting can be done by considering initially all possible
+      --  combinations and discounting combinations with an equivalent one (in
+      --  the given ranges). To find an equivalent combination requires
+      --  factoring the base an exponent, then applying exponential properties
+      --  to increase the base and reduce the exponent. That is, try to
+      --  increase the base and reduce the exponent so that:
+      --
+      --  a^b = p^q  with  2 <= a < p <= 100, 2 <= q <= 100.
+      --
+      --  If from a^b the equivalent combination p^q can be found, then the
+      --  combination a^b must be discounted.
+      --
+      --  For example:  (note: "⁽²²⁾" denotes a list of factors)
+      --
+      --     6⁴ = 6⁽²²⁾ = (6²)² = 36²
+      --
+      --  If all factors of the base are equal, then use that number of
+      --  factors (factorized) as a new exponent factor, e.g., 16 factorizes
+      --  as (2 2 2 2), which is 2⁴ = 2⁽²²⁾, so
+      --
+      --    16⁶ = (2⁽²²⁾)⁽²³⁾ = 2⁽²²²³⁾ = 4⁽²²³⁾ = 16⁽²³⁾ = 256³
+      --
+      --  The new base found is 256 > 100, so 16⁶ has no equivalent
+      --  combination with greater base 16 < p <= 100.
+      --
+      --  The list of factors ⁽²²²³⁾ must be sorted to make sure the new base
+      --  is found.
+      --
+      --  In the case of 27¹⁰⁰:
+      --
+      --    27¹⁰⁰ = (3 3 3)¹⁰⁰ = (3³)⁽²²⁵⁵⁾ = 3⁽²²³⁵⁵⁾
+      --                                    = 9⁽²³⁵⁵⁾
+      --                                    = 81⁽³⁵⁵⁾
+      --                                    = 81⁷⁵
+      --
+      --  there is an equivalent combination with a greater base, 81⁷⁵, so
+      --  27¹⁰⁰ must be discounted.
+      --
 
       for Base in 2 .. 100 loop
          for Exp in 2 .. 100 loop
             declare
-               Base_New            : Integer_Type;
+               Base_New : Integer_Type;
+
                Base_Factors : constant List_Type := Prime_Factors (Base);
                Base_Factors_Equals : constant Boolean := Equals (Base_Factors);
-               Exp_Factors         : List_Type          := Prime_Factors (Exp);
-               Factors             : List_Type;
-               Length_Factors      : Natural;
-            begin
-               --  Try to increase the base and reduce the exponent so that
-               --  a^b = p^q with 2 <= a < p <= 100, 2 <= q <= 100, e.g.
-               --
-               --    6⁴ = 6⁽²²⁾ = (6²)² = 36²
-               --
-               --  Then, considering that numbers with greater base are
-               --  always counted (36²), don't count equivalent numbers with
-               --  lesser base (6⁴).
-               --
-               --  If Equals (Base_Factors), then use the number of factors
-               --  of the Base, Length (Base_Factors), as a new exponent
-               --  factor, e.g.
-               --
-               --    27¹⁰⁰ = (3³)⁽²²⁵⁵⁾ = 3⁽²²⁵⁵³⁾ = (3⁴)⁽⁵⁵³⁾ = 81⁷⁵
-               --
-               --  The list of factor ⁽²²⁵⁵³⁾ must be sorted to make sure the
-               --  new base is found.
 
+               Exp_Factors    : List_Type := Prime_Factors (Exp);
+               Factors        : List_Type;
+               Length_Factors : Natural;
+            begin
                if Base_Factors_Equals then
                   for F of Prime_Factors (Length (Base_Factors)) loop
                      Exp_Factors.Append (F);
@@ -85,6 +112,7 @@ package body P0029_Distinct_Powers is
                   else
                      Base_New := Base;
                   end if;
+
                   Factors := Exp_Factors;
                   loop
                      begin
@@ -96,6 +124,7 @@ package body P0029_Distinct_Powers is
                      Factors.Delete_First;
                      exit when Base_New > Base;
                   end loop;
+
                   if Base_New <= 100 and then Product (Factors) in 2 .. 100
                   then
                      --  Duplicate value found
