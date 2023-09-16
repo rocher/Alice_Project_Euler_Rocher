@@ -11,6 +11,6 @@ maintainers-logins = ["rocher"]
 
 [[depends-on]]
 euler_tools = "^1.1.1"
-project_euler = "~0.1.0-dev"
+project_euler = ">=0.1.0-dev"
 [[pins]]
 project_euler = { path='../..' }
